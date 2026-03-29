@@ -16,7 +16,7 @@ DFRL:NewMod("Gui-elem", 3, function()
 
     local Base = DFRL.gui.Base
     local Setup = {
-        font = DFRL:GetInfoOrCons("font"),
+        font = "Fonts\\",
 
         metadata = {},
         checkboxes = {},
@@ -83,13 +83,33 @@ DFRL:NewMod("Gui-elem", 3, function()
             ["Mini"]    = {14, 4},
             ["Xprep"]   = {15, 1},
         },
+
+        moduleNameTranslations = {
+            ["Bars"] = "动作条",
+            ["RangeIndicator"] = "距离指示器",
+            ["Bags"] = "背包",
+            ["Cast"] = "施法条",
+            ["Chat"] = "聊天",
+            ["GUI-Dragonflight"] = "Dragonflight界面",
+            ["Errors"] = "错误提示",
+            ["Tooltip"] = "鼠标提示",
+            ["Ui"] = "界面",
+            ["Micro"] = "微型菜单",
+            ["Collector"] = "收集器",
+            ["Map"] = "地图",
+            ["Player"] = "玩家框体",
+            ["PVPIcon"] = "PVP图标",
+            ["Target"] = "目标框体",
+            ["Mini"] = "小地图",
+            ["Xprep"] = "经验/声望",
+        },
     }
 
     function Setup:MetaData()
 
         for moduleName, defaults in pairs(DFRL.defaults) do
             for elementName, valueTable in pairs(defaults) do
-                if elementName ~= "enabled" and table.getn(valueTable) > 1 then
+                if elementName ~= "enabled" and valueTable[2] then
 
                     local typeMeta = valueTable[3]
                     if valueTable[2] == "slider" and type(typeMeta) == "table" then
@@ -145,7 +165,7 @@ DFRL:NewMod("Gui-elem", 3, function()
                 end
 
                 for elementName, valueTable in pairs(defaults) do
-                    if elementName ~= "enabled" and table.getn(valueTable) > 1 then
+                    if elementName ~= "enabled" and valueTable[2] then
                         local metaKey = moduleName .. "." .. elementName
                         local data = self.metadata[metaKey]
 
@@ -210,7 +230,8 @@ DFRL:NewMod("Gui-elem", 3, function()
 
             local moduleKey = tabIndex .. "_" .. moduleName
             if not self.moduleHeaders[moduleKey] then
-                local moduleHeader = DFRL.tools.CreateCategoryHeader(scrollChild, moduleName, nil, 300, 50, 30)
+                local translatedName = self.moduleNameTranslations[moduleName] or moduleName
+                local moduleHeader = DFRL.tools.CreateCategoryHeader(scrollChild, translatedName, nil, 300, 50, 30)
                 moduleHeader:SetPoint("TOP", scrollChild, "TOP", -200, self.tabPositions[tabIndex] - 40)
                 self.moduleHeaders[moduleKey] = moduleHeader
                 self.tabPositions[tabIndex] = self.tabPositions[tabIndex] - self.MODULE_TOP_SPACING - self.MODULE_BOTTOM_SPACING
@@ -285,25 +306,28 @@ DFRL:NewMod("Gui-elem", 3, function()
                         local elementKey = elementModule .. "." .. elementName
                         if not self.checkboxes[elementKey] then
                             local descLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                            descLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
+                            descLabel:SetFont("Fonts\\FRIZQT__.TTF", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
                             descLabel:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 10, currentY - 3)
-                            descLabel:SetText(data.description or "")
+                            local displayText = data.description or elementName
+                            descLabel:SetText(displayText)
                             descLabel:SetTextColor(.9,.9,.9)
 
                             if data.extraDescription then
                                 local extraDescLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                                extraDescLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
+                                extraDescLabel:SetFont("Fonts\\FRIZQT__.TTF", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
                                 extraDescLabel:SetPoint("LEFT", descLabel, "RIGHT", 10, 0)
                                 extraDescLabel:SetText(data.extraDescription)
                                 extraDescLabel:SetTextColor(1, 0.5, 0.5)
                                 self.extraDescriptionLabels[elementName] = extraDescLabel
                             end
 
-                            local checkbox = DFRL.tools.CreateCheckbox(scrollChild, nil, elementModule, elementName)
+                            local labelText = data.description or elementName
+                            local checkbox = DFRL.tools.CreateCheckbox(scrollChild, nil, elementModule, elementName, nil, labelText)
                             checkbox:SetPoint("TOPRIGHT", scrollChild, "TOPRIGHT", -150, currentY)
                             checkbox:SetChecked(currentValue)
                             if checkbox.label then
-                                checkbox.label:SetFont(self.font .. "BigNoodleTitling.ttf", self.VALUE_FONT_SIZE, "OUTLINE")
+                                checkbox.label:SetFont("Fonts\\FRIZQT__.TTF", self.VALUE_FONT_SIZE, "OUTLINE")
+                                checkbox.label:SetText(labelText)
                             end
 
                             self.checkboxes[elementKey] = checkbox
@@ -346,14 +370,15 @@ DFRL:NewMod("Gui-elem", 3, function()
                         local elementKey = elementModule .. "." .. elementName
                         if not self.sliders[elementKey] then
                             local descLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                            descLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
+                            descLabel:SetFont("Fonts\\FRIZQT__.TTF", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
                             descLabel:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 10, currentY - 6)
-                            descLabel:SetText(data.description or "")
+                            local displayText = data.description or elementName
+                            descLabel:SetText(displayText)
                             descLabel:SetTextColor(.9,.9,.9)
 
                             if data.extraDescription then
                                 local extraDescLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                                extraDescLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
+                                extraDescLabel:SetFont("Fonts\\FRIZQT__.TTF", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
                                 extraDescLabel:SetPoint("LEFT", descLabel, "RIGHT", 10, 0)
                                 extraDescLabel:SetText(data.extraDescription)
                                 extraDescLabel:SetTextColor(1, 0.5, 0.5)
@@ -361,11 +386,13 @@ DFRL:NewMod("Gui-elem", 3, function()
                             end
 
                             local typeMeta = data.elementTypeMeta
-                            local slider = DFRL.tools.CreateSlider(scrollChild, nil, elementModule, elementName, typeMeta.min, typeMeta.max, typeMeta.step)
+                            local sliderLabelText = data.description or elementName
+                            local slider = DFRL.tools.CreateSlider(scrollChild, nil, elementModule, elementName, typeMeta.min, typeMeta.max, typeMeta.step, nil, sliderLabelText)
                             slider:SetPoint("TOPRIGHT", scrollChild, "TOPRIGHT", -30, currentY)
                             slider:SetValue(currentValue)
                             if slider.label then
-                                slider.label:SetFont(self.font .. "BigNoodleTitling.ttf", self.VALUE_FONT_SIZE, "OUTLINE")
+                                slider.label:SetFont("Fonts\\FRIZQT__.TTF", self.VALUE_FONT_SIZE, "OUTLINE")
+                                slider.label:SetText(sliderLabelText)
                             end
 
                             self.sliders[elementKey] = slider
@@ -432,14 +459,15 @@ DFRL:NewMod("Gui-elem", 3, function()
                         local elementKey = elementModule .. "." .. elementName
                         if not self.dropdowns[elementKey] then
                             local descLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                            descLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
+                            descLabel:SetFont("Fonts\\FRIZQT__.TTF", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
                             descLabel:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 10, currentY - 10)
-                            descLabel:SetText(data.description or "")
+                            local displayText = data.description or elementName
+                            descLabel:SetText(displayText)
                             descLabel:SetTextColor(.9,.9,.9)
 
                             if data.extraDescription then
                                 local extraDescLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                                extraDescLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
+                                extraDescLabel:SetFont("Fonts\\FRIZQT__.TTF", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
                                 extraDescLabel:SetPoint("LEFT", descLabel, "RIGHT", 10, 0)
                                 extraDescLabel:SetText(data.extraDescription)
                                 extraDescLabel:SetTextColor(1, 0.5, 0.5)
@@ -447,10 +475,12 @@ DFRL:NewMod("Gui-elem", 3, function()
                             end
 
                             local typeMeta = data.elementTypeMeta
-                            local dropdown = DFRL.tools.CreateDropDown(scrollChild, nil, elementModule, elementName, typeMeta.items)
+                            local dropdownLabelText = data.description or elementName
+                            local dropdown = DFRL.tools.CreateDropDown(scrollChild, nil, elementModule, elementName, typeMeta.items, nil, nil, nil, dropdownLabelText)
                             dropdown:SetPoint("TOPRIGHT", scrollChild, "TOPRIGHT", -27, currentY)
                             if dropdown.text then
-                                dropdown.text:SetFont(self.font .. "BigNoodleTitling.ttf", self.VALUE_FONT_SIZE, "OUTLINE")
+                                dropdown.text:SetFont("Fonts\\FRIZQT__.TTF", self.VALUE_FONT_SIZE, "OUTLINE")
+                                dropdown.text:SetText(dropdownLabelText)
                             end
 
                             self.dropdowns[elementKey] = dropdown
@@ -493,24 +523,27 @@ DFRL:NewMod("Gui-elem", 3, function()
                         local elementKey = elementModule .. "." .. elementName
                         if not self.colours[elementKey] then
                             local descLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                            descLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
+                            descLabel:SetFont("Fonts\\FRIZQT__.TTF", self.DESCRIPTION_FONT_SIZE, "OUTLINE")
                             descLabel:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 10, currentY - 6)
-                            descLabel:SetText(data.description or "")
+                            local displayText = data.description or elementName
+                            descLabel:SetText(displayText)
                             descLabel:SetTextColor(.9,.9,.9)
 
                             if data.extraDescription then
                                 local extraDescLabel = scrollChild:CreateFontString(nil, "BACKGROUND")
-                                extraDescLabel:SetFont(self.font .. "BigNoodleTitling.ttf", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
+                                extraDescLabel:SetFont("Fonts\\FRIZQT__.TTF", self.EXTRA_DESCRIPTION_FONT_SIZE, "OUTLINE")
                                 extraDescLabel:SetPoint("LEFT", descLabel, "RIGHT", 10, 0)
                                 extraDescLabel:SetText(data.extraDescription)
                                 extraDescLabel:SetTextColor(1, 0.5, 0.5)
                                 self.extraDescriptionLabels[elementKey] = extraDescLabel
                             end
 
-                            local colour = DFRL.tools.CreateColour(scrollChild, nil, elementModule, elementName)
+                            local colourLabelText = data.description or elementName
+                            local colour = DFRL.tools.CreateColour(scrollChild, nil, elementModule, elementName, colourLabelText)
                             colour:SetPoint("TOPRIGHT", scrollChild, "TOPRIGHT", -30, currentY)
                             if colour.label then
-                                colour.label:SetFont(self.font .. "BigNoodleTitling.ttf", self.VALUE_FONT_SIZE, "OUTLINE")
+                                colour.label:SetFont("Fonts\\FRIZQT__.TTF", self.VALUE_FONT_SIZE, "OUTLINE")
+                                colour.label:SetText(colourLabelText)
                             end
 
                             self.colours[elementKey] = colour
@@ -590,7 +623,7 @@ DFRL:NewMod("Gui-elem", 3, function()
             for moduleName, defaults in pairs(DFRL.defaults) do
                 if self.moduleMapping[moduleName] then
                     for elementName, valueTable in pairs(defaults) do
-                        if elementName ~= "enabled" and table.getn(valueTable) > 1 then
+                        if elementName ~= "enabled" and valueTable[2] then
                             local metaKey = moduleName .. "." .. elementName
                             local data = self.metadata[metaKey]
 

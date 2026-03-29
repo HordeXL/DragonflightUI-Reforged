@@ -174,7 +174,7 @@ function DFRL:VersionCheckDB()
         DFRL_DB_SETUP = {}
         DFRL_CUR_PROFILE = {}
         DFRL_DB_SETUP.version = self.DBversion
-        print("Version mismatch - wiping all DFRL DB's")
+        print("版本不匹配 - 正在清除所有 DFRL 数据库")
     end
 end
 
@@ -315,8 +315,8 @@ DFRL:SetScript("OnEvent", function()
         if boot then return end
         DFRL:InitTempDB()
         DFRL:RunMods()
-        print("Welcome to |cffffd200Dragonflight:|r Reforged.")
-        print("Open menu via |cffddddddESC|r or |cffddddddSLASH DFRL|r.")
+        print("欢迎使用 |cffffd200Dragonflight:|r Reforged. |cffffd200By等待依然--20260223修复汉化|r")
+        print("通过 |cffddddddESC|r 键或 |cffdddddd/dfrl|r 命令打开菜单。")
     end
     if event == "PLAYER_LOGOUT" then
         DFRL:SaveTempDB()

@@ -1,12 +1,12 @@
 DFRL:NewDefaults("Micro", {
     enabled = {true},
-    microDarkMode = {0, "slider", {0, 1}, nil, "appearance", 1, "Adjust dark mode intensity", nil, nil},
-    microColor = {{1, 1, 1}, "colour", nil, nil, "appearance", 2, "Change micro color", nil, nil},
-    switchColor = {true, "checkbox", nil, nil, "micro basic", 3, "Switch between gray and colorfull micro menu", nil, nil},
-    microScale = {0.85, "slider", {0.5, 1.5}, nil, "micro basic", 4, "Adjusts the scale of the micro menu", nil, nil},
-    microAlpha = {1, "slider", {0.1, 1}, nil, "micro basic", 5, "Adjusts the transparency of the micro menu", nil, nil},
-    microSpacing = {3, "slider", {0.5, 15}, nil, "micro basic", 6, "Adjusts spacing between micro menu buttons", nil, nil},
-    smallFPS = {false, "checkbox", nil, nil, "tweaks", 7, "Show smaller FPS/MS watcher (CTRL+R)", nil, nil},
+    microDarkMode = {0, "slider", {0, 1}, nil, "外观", 1, "调整暗色模式强度", nil, nil},
+    microColor = {{1, 1, 1}, "colour", nil, nil, "外观", 2, "更改微型菜单颜色", nil, nil},
+    switchColor = {true, "checkbox", nil, nil, "微型菜单基础", 3, "在灰色和彩色微型菜单之间切换", nil, nil},
+    microScale = {0.85, "slider", {0.5, 1.5}, nil, "微型菜单基础", 4, "调整微型菜单的缩放", nil, nil},
+    microAlpha = {1, "slider", {0.1, 1}, nil, "微型菜单基础", 5, "调整微型菜单的透明度", nil, nil},
+    microSpacing = {3, "slider", {0.5, 15}, nil, "微型菜单基础", 6, "调整微型菜单按钮间距", nil, nil},
+    smallFPS = {false, "checkbox", nil, nil, "调整", 7, "显示更小的FPS/MS监视器 (CTRL+R)", nil, nil},
 })
 
 DFRL:NewMod("Micro", 1, function()
@@ -78,15 +78,15 @@ DFRL:NewMod("Micro", 1, function()
         self.pvpButton:SetScript("OnClick", function()
             if BattlefieldFrame:IsVisible() then
                 ToggleGameMenu()
-            else
+            elseif ShowTWBGQueueMenu then
                 ShowTWBGQueueMenu()
             end
         end)
         self.pvpButton:SetScript("OnEnter", function()
             GameTooltip:SetOwner(self.pvpButton, "ANCHOR_RIGHT")
-            GameTooltip:SetText("Player vs Player", 1, 1, 1)
-            GameTooltip:AddLine("Queue for battlegrounds and view PvP statistics.")
-            GameTooltip:AddLine("Right-click to toggle honor system.")
+            GameTooltip:SetText("玩家对战", 1, 1, 1)
+            GameTooltip:AddLine("排队进入战场并查看PvP统计信息。")
+            GameTooltip:AddLine("右键点击切换荣誉系统。")
             GameTooltip:Show()
         end)
         self.pvpButton:SetScript("OnLeave", function()
@@ -104,9 +104,9 @@ DFRL:NewMod("Micro", 1, function()
         self.lftButton:SetScript("OnClick", LFT_Toggle)
         self.lftButton:SetScript("OnEnter", function()
             GameTooltip:SetOwner(self.lftButton, "ANCHOR_RIGHT")
-            GameTooltip:SetText("Looking For Team", 1, 1, 1)
-            GameTooltip:AddLine("Open the Group Finder interface to find a team,")
-            GameTooltip:AddLine("be aware that you must travel to the dungeon manually.")
+            GameTooltip:SetText("寻找队伍", 1, 1, 1)
+            GameTooltip:AddLine("打开队伍查找界面来寻找队伍，")
+            GameTooltip:AddLine("注意你必须手动前往地下城。")
             GameTooltip:Show()
         end)
         self.lftButton:SetScript("OnLeave", function()
@@ -148,8 +148,8 @@ DFRL:NewMod("Micro", 1, function()
         end)
         self.ebcButton:SetScript("OnEnter", function()
             GameTooltip:SetOwner(self.ebcButton, "ANCHOR_RIGHT")
-            GameTooltip:SetText("Everlook Broadcasting Co.", 1, 1, 1, 1, true)
-            GameTooltip:AddLine("Listen to some awesome tunes while you play Turtle WoW.", nil, nil, nil, true)
+            GameTooltip:SetText("永望镇广播公司", 1, 1, 1, 1, true)
+            GameTooltip:AddLine("在玩Turtle WoW时收听一些精彩的音乐。", nil, nil, nil, true)
             GameTooltip:Show()
         end)
         self.ebcButton:SetScript("OnLeave", function()
@@ -168,8 +168,8 @@ DFRL:NewMod("Micro", 1, function()
 
             lowLevelTalentsButton:SetScript("OnEnter", function()
                 GameTooltip:SetOwner(lowLevelTalentsButton, "ANCHOR_RIGHT")
-                GameTooltip:SetText("Talents", 1, 1, 1)
-                GameTooltip:AddLine("You must reach level 10 to use talents.")
+                GameTooltip:SetText("天赋", 1, 1, 1)
+                GameTooltip:AddLine("你必须达到10级才能使用天赋。")
                 GameTooltip:Show()
             end)
 
@@ -319,9 +319,9 @@ DFRL:NewMod("Micro", 1, function()
             this.tick = GetTime() + 0.5
 
             local bandwidthIn, bandwidthOut, latencyHome = GetNetStats()
-            self.msText:SetText(string.format("MS: %d", latencyHome))
-            self.bwText:SetText(string.format("UL/DL: %.1f / %.1f", bandwidthIn, bandwidthOut))
-            self.fpsText:SetText(string.format("FPS: %d", GetFramerate()))
+            self.msText:SetText(string.format("延迟: %d", latencyHome))
+            self.bwText:SetText(string.format("上传/下载: %.1f / %.1f", bandwidthIn, bandwidthOut))
+            self.fpsText:SetText(string.format("帧数: %d", GetFramerate()))
         end)
 
         self.latencyIndicator:SetScript("OnUpdate", function()

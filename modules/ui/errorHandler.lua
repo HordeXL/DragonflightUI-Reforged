@@ -1,6 +1,6 @@
 DFRL:NewDefaults('Errors', {
     enabled = {true},
-    hideErrors = {false, 'checkbox', nil, nil, 'tweaks', 1, 'Hide all lua errors', nil, nil},
+    hideErrors = {false, 'checkbox', nil, nil, '微调', 1, '隐藏所有 lua 错误', nil, nil},
 })
 
 DFRL:NewMod('Errors', 1, function()

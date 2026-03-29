@@ -1,6 +1,6 @@
 DFRL:NewDefaults("PVPIcon", {
     enabled = { true },
-    pvpDark = {false, "checkbox", nil, nil, "appearance", 1, "Use dark color for PvP icons", nil, nil},
+    pvpDark = {false, "checkbox", nil, nil, "外观", 1, "为PvP图标使用深色", nil, nil},
 })
 
 DFRL:NewMod("PVPIcon", 1, function()

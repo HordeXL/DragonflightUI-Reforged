@@ -17,12 +17,36 @@ DFRL:NewMod("Gui-mods", 3, function()
         reloadFont = nil,
         reloadBtn = nil,
         TEXT_SIZE = 14,
-        init = false
+        init = false,
+
+        moduleTranslations = {
+            ["Addons"] = "插件",
+            ["Bags"] = "背包",
+            ["Bars"] = "动作条",
+            ["Cast"] = "施法条",
+            ["Chat"] = "聊天",
+            ["Collector"] = "收集器",
+            ["Errors"] = "错误提示",
+            ["Frames"] = "框体",
+            ["Map"] = "地图",
+            ["Menu"] = "菜单",
+            ["Micro"] = "微型菜单",
+            ["Mini"] = "小地图",
+            ["Player"] = "玩家框体",
+            ["PVPIcon"] = "PVP图标",
+            ["RangeIndicator"] = "距离指示器",
+            ["Talents"] = "天赋",
+            ["Target"] = "目标框体",
+            ["Tooltip"] = "鼠标提示",
+            ["Ui"] = "界面",
+            ["UpdateNotifier"] = "更新通知",
+            ["Xprep"] = "经验/声望",
+        }
     }
 
     function Setup:Modules()
         if not self.init then
-            self.descFont = DFRL.tools.CreateFont(panel, self.TEXT_SIZE, "Enable or disable addon modules. Changes require UI reload to take effect.", {0.5, 0.5, 0.5}, "CENTER")
+            self.descFont = DFRL.tools.CreateFont(panel, self.TEXT_SIZE, "启用或禁用插件模块。更改需要重载界面才能生效。", {0.5, 0.5, 0.5}, "CENTER")
             self.descFont:SetPoint("TOP", panel, "TOP", 0, -60)
 
             local modules = {}
@@ -48,17 +72,18 @@ DFRL:NewMod("Gui-mods", 3, function()
                 end
 
                 local moduleName = modules[i]
+                local translatedName = self.moduleTranslations[moduleName] or moduleName
                 local checkbox = DFRL.tools.CreateCheckbox(nil, nil, moduleName, "enabled", true)
-                checkbox.label:SetText(moduleName)
+                checkbox.label:SetText(translatedName)
                 self.grid:AddElement(row, line, checkbox)
 
                 line = line + 1
                 count = count + 1
             end
 
-            self.reloadFont = DFRL.tools.CreateFont(panel, self.TEXT_SIZE, "Changes take effect after reload:", {0.5, 0.5, 0.5}, "CENTER")
+            self.reloadFont = DFRL.tools.CreateFont(panel, self.TEXT_SIZE, "更改将在重载界面后生效:", {0.5, 0.5, 0.5}, "CENTER")
             self.reloadFont:SetPoint("CENTER", panel, "CENTER", 12, 60)
-            self.reloadBtn = DFRL.tools.CreateButton(panel, "Reload UI", 140, 30, true, {1, 0.5, 0.5})
+            self.reloadBtn = DFRL.tools.CreateButton(panel, "重载界面", 140, 30, true, {1, 0.5, 0.5})
             self.reloadBtn:SetPoint("TOP", self.reloadFont, "BOTTOM", 0, -5)
             self.reloadBtn:SetScript("OnClick", function()
                 ReloadUI()

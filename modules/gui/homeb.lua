@@ -13,11 +13,11 @@ DFRL:NewDefaults("GUI-Dragonflight", {
         "BigNoodleTitling",
         "Continuum",
         "DieDieDie"
-    }, nil, "Home Screen", 1, "Change all fonts in the GUI", nil, nil},
-    smallerFrame = {true, "checkbox", nil, nil, "Home Screen", 2, "Changes the scale of the mainframe", nil, nil},
-    sideView = {.3, "slider", {.1, .8}, nil, "Home Screen", 3, "Changes the alpha of the side view", "", nil},
-    homeMinMaxColor = {{1, .82, 0}, "colour", nil, nil, "Home Screen", 4, "Changes the color of the close and min button", nil, nil},
-    homeTimeColor = {{1, .82, 0}, "colour", nil, nil, "Home Screen", 5, "Changes the color of the time on the home screen", nil, nil},
+    }, nil, "主页", 1, "更改界面中的所有字体", nil, nil},
+    smallerFrame = {true, "checkbox", nil, nil, "主页", 2, "更改主界面的缩放比例", nil, nil},
+    sideView = {.3, "slider", {.1, .8}, nil, "主页", 3, "更改侧视图的透明度", "", nil},
+    homeMinMaxColor = {{1, .82, 0}, "colour", nil, nil, "主页", 4, "更改关闭和最小化按钮的颜色", nil, nil},
+    homeTimeColor = {{1, .82, 0}, "colour", nil, nil, "主页", 5, "更改主页上时间的颜色", nil, nil},
 })
 
 DFRL:NewMod("GUI-Dragonflight", 4, function()
@@ -234,7 +234,7 @@ DFRL:NewMod("GUI-Dragonflight", 4, function()
         end
 
         if not self.closeBtn then
-            self.closeBtn = DFRL.tools.CreateButton(Base.titleFrame, "close", 50, 20, true, {1,0,0})
+            self.closeBtn = DFRL.tools.CreateButton(Base.titleFrame, "关闭", 50, 20, true, {1,0,0})
             self.closeBtn:SetPoint("TOPRIGHT", Base.mainFrame, "TOPRIGHT", -115, 28)
             self.closeBtn:SetScript("OnClick", function()
                 Toggle()
@@ -242,7 +242,7 @@ DFRL:NewMod("GUI-Dragonflight", 4, function()
         end
 
         if not self.minBtn then
-            self.minBtn = DFRL.tools.CreateButton(Base.titleFrame, "min", 50, 20, true, {1,0,0})
+            self.minBtn = DFRL.tools.CreateButton(Base.titleFrame, "最小化", 50, 20, true, {1,0,0})
             self.minBtn:SetPoint("RIGHT", self.closeBtn, "LEFT", 2, 0)
             self.minBtn:SetScript("OnClick", function()
                 MinMax()
@@ -272,8 +272,11 @@ DFRL:NewMod("GUI-Dragonflight", 4, function()
                 UIFrameFadeIn(Base.titleFrame, 0.2, 0, 1)
             end)
 
-            GameMenuButtonShop:ClearAllPoints()
-            GameMenuButtonShop:SetPoint("TOP", self.gamemenuBtn, "BOTTOM", 0, -15)
+            -- 如果存在商店按钮则调整位置（Retail版本）
+            if GameMenuButtonShop then
+                GameMenuButtonShop:ClearAllPoints()
+                GameMenuButtonShop:SetPoint("TOP", self.gamemenuBtn, "BOTTOM", 0, -15)
+            end
 
             GameMenuFrame:SetWidth(GameMenuFrame:GetWidth() + 10)
             GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + 60)

@@ -95,7 +95,7 @@ end
 
 function DFRL.tools.CreateFont(parent, size, text, colour, align)
     local font = parent:CreateFontString(nil, "OVERLAY")
-    font:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", size or 14, "OUTLINE")
+    font:SetFont("Fonts\\FRIZQT__.TTF", size or 14, "OUTLINE")
     colour = colour or {1, 1, 1}
     font:SetTextColor(colour[1], colour[2], colour[3])
     font:SetText(text)
@@ -119,7 +119,7 @@ function DFRL.tools.CreateButton(parent, text, width, height, noBackdrop, textCo
     end
 
     local btnTxt = btn:CreateFontString(nil, "OVERLAY")
-    btnTxt:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    btnTxt:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     btnTxt:SetPoint("CENTER", btn, "CENTER", 0, 0)
     btnTxt:SetText(text)
 
@@ -163,7 +163,7 @@ function DFRL.tools.CreateIndiCheckbox(parent, name, text)
     checkbox:SetHeight(20)
 
     local label = checkbox:CreateFontString(nil, "BACKGROUND")
-    label:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    label:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     label:SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
     label:SetText(text or "Checkbox")
     label:SetTextColor(.9,.9,.9)
@@ -206,14 +206,14 @@ function DFRL.tools.CreateIndiSlider(parent, name, text, minVal, maxVal, step)
     local label = slider:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("BOTTOMLEFT", slider, "TOPLEFT", 0, -0)
     label:SetText(text or "Slider")
-    label:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    label:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     label:SetTextColor(.9,.9,.9)
     slider.label = label
 
     local valueText = slider:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     valueText:SetPoint("LEFT", slider, "RIGHT", 1, -0)
     valueText:SetTextColor(1, 1, 1)
-    valueText:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    valueText:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     slider.valueText = valueText
 
     slider:SetValue(minVal or 0)
@@ -324,7 +324,7 @@ function DFRL.tools.CreateEditBox(parent, width, height, letters, numbers, max)
     })
     box:SetBackdropColor(0, 0, 0, 0.8)
     box:SetBackdropBorderColor(0.5, 0.5, 0.5, 1)
-    box:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 14, "OUTLINE")
+    box:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
     box:SetTextColor(1, 1, 1)
     box:SetTextInsets(5, 5, 5, 5)
     box:SetAutoFocus(false)
@@ -395,30 +395,29 @@ function DFRL.tools.CreateCategoryHeader(parent, categoryName, noBG, width, heig
     end
 
     local categoryTitle = categoryBg:CreateFontString(nil, "OVERLAY")
-    categoryTitle:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", txtSize or 14, "OUTLINE")
+    categoryTitle:SetFont("Fonts\\FRIZQT__.TTF", txtSize or 14, "OUTLINE")
     categoryTitle:SetPoint("CENTER", categoryBg, "CENTER", 0, 1)
-    local words = string.gfind(categoryName, "%S+")
-    local capitalizedWords = {}
-    for word in words do
-        table.insert(capitalizedWords, string.upper(string.sub(word, 1, 1)) .. string.sub(word, 2))
-    end
-    categoryTitle:SetText(table.concat(capitalizedWords, " "))
+    categoryTitle:SetText(categoryName)
     categoryTitle:SetTextColor(1, 0.82, 0)
 
     return categoryBg
 end
 
-function DFRL.tools.CreateCheckbox(parent, name, moduleName, key, noCall)
+function DFRL.tools.CreateCheckbox(parent, name, moduleName, key, noCall, labelText)
     local checkbox = CreateFrame("CheckButton", name, parent, "UICheckButtonTemplate")
     checkbox:SetWidth(20)
     checkbox:SetHeight(20)
 
     local label = checkbox:CreateFontString(nil, "BACKGROUND")
-    label:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    label:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     label:SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
-    local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
-    displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
-    label:SetText(displayTxt)
+    if labelText then
+        label:SetText(labelText)
+    else
+        local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
+        displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
+        label:SetText(displayTxt)
+    end
     label:SetTextColor(.9,.9,.9)
     checkbox.label = label
 
@@ -443,7 +442,7 @@ function DFRL.tools.CreateShaguCheckbox(parent, name, key)
     checkbox:SetHeight(20)
 
     local label = checkbox:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    label:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 14, "OUTLINE")
+    label:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
     label:SetPoint("LEFT", checkbox, "RIGHT", 5, 0)
     label:SetText(key)
     label:SetTextColor(.9,.9,.9)
@@ -473,7 +472,7 @@ function DFRL.tools.CreateShaguCheckbox(parent, name, key)
     return checkbox
 end
 
-function DFRL.tools.CreateSlider(parent, name, moduleName, key, minVal, maxVal, step, noCall)
+function DFRL.tools.CreateSlider(parent, name, moduleName, key, minVal, maxVal, step, noCall, labelText)
     local slider = CreateFrame("Slider", name, parent)
     slider:SetWidth(136)
     slider:SetHeight(24)
@@ -490,17 +489,21 @@ function DFRL.tools.CreateSlider(parent, name, moduleName, key, minVal, maxVal, 
 
     local label = slider:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("BOTTOMLEFT", slider, "TOPLEFT", 0, -0)
-    local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
-    displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
-    label:SetText(displayTxt)
-    label:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    if labelText then
+        label:SetText(labelText)
+    else
+        local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
+        displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
+        label:SetText(displayTxt)
+    end
+    label:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     label:SetTextColor(.9,.9,.9)
     slider.label = label
 
     local valueText = slider:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     valueText:SetPoint("LEFT", slider, "RIGHT", 1, -0)
     valueText:SetTextColor(1, 1, 1)
-    valueText:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    valueText:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     slider.valueText = valueText
 
     slider.moduleName = moduleName
@@ -538,7 +541,7 @@ function DFRL.tools.CreateSlider(parent, name, moduleName, key, minVal, maxVal, 
     return slider
 end
 
-function DFRL.tools.CreateColour(parent, name, moduleName, key)
+function DFRL.tools.CreateColour(parent, name, moduleName, key, labelText)
 
     local BASIC_COLORS = {
         -- red variants
@@ -602,9 +605,13 @@ function DFRL.tools.CreateColour(parent, name, moduleName, key)
 
     local label = slider:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("BOTTOMLEFT", slider, "TOPLEFT", 0, -0)
-    local displayText = string.gsub(key, "(%l)(%u)", "%1 %2")
-    displayText = string.upper(string.sub(displayText, 1, 1)) .. string.sub(displayText, 2)
-    label:SetText(displayText)
+    if labelText then
+        label:SetText(labelText)
+    else
+        local displayText = string.gsub(key, "(%l)(%u)", "%1 %2")
+        displayText = string.upper(string.sub(displayText, 1, 1)) .. string.sub(displayText, 2)
+        label:SetText(displayText)
+    end
     label:SetFont("Fonts\\FRIZQT__.TTF", 11, "")
     label:SetTextColor(.9,.9,.9)
     slider.label = label
@@ -672,17 +679,21 @@ function DFRL.tools.CreateColour(parent, name, moduleName, key)
     return slider
 end
 
-function DFRL.tools.CreateDropDown(parent, name, moduleName, key, items, noCall, h, w)
+function DFRL.tools.CreateDropDown(parent, name, moduleName, key, items, noCall, h, w, labelText)
     local BUTTON_HEIGHT = 20
     local Y_SPACING = 25
 
     local btn = DFRL.tools.CreateButton(parent, nil, w, h)
     local btnTxt = btn:CreateFontString(nil, "OVERLAY")
-    btnTxt:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", 12, "OUTLINE")
+    btnTxt:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
     btnTxt:SetPoint("CENTER", btn, "CENTER", 0, 0)
-    local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
-    displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
-    btnTxt:SetText(displayTxt)
+    if labelText then
+        btnTxt:SetText(labelText)
+    else
+        local displayTxt = string.gsub(key, "(%l)(%u)", "%1 %2")
+        displayTxt = string.upper(string.sub(displayTxt, 1, 1)) .. string.sub(displayTxt, 2)
+        btnTxt:SetText(displayTxt)
+    end
     btnTxt:SetTextColor(1, 1, 1)
     btn.text = btnTxt
 
@@ -833,7 +844,7 @@ end
 
 function DFRL.tools.CreateFontWarner(parent, size, text, colour, pulse, time)
     local fontString = parent:CreateFontString(nil, "OVERLAY")
-    fontString:SetFont(DFRL:GetInfoOrCons("font") .. "BigNoodleTitling.ttf", size or 14, "OUTLINE")
+    fontString:SetFont("Fonts\\FRIZQT__.TTF", size or 14, "OUTLINE")
 
     if colour then
         fontString:SetTextColor(colour[1], colour[2], colour[3])

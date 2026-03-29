@@ -1,11 +1,11 @@
 DFRL:NewDefaults("Mini", {
     enabled = {true},
-    miniDarkMode = {0, "slider", {0, 1}, nil, "Appearance", 1, "Adjust dark mode intensity", nil, nil},
-    miniColor = {{1, 1, 1}, "colour", nil, nil, "Appearance", 2, "Change mini color", nil, nil},
-    petFrameScale = {1, "slider", {0.7, 1.3}, nil, "Appearance", 3, "Adjust pet frame size", nil, nil},
-    totFrameScale = {1, "slider", {0.7, 1.3}, nil, "Appearance", 4, "Adjust target of target frame size", nil, nil},
-    partyFrameScale = {1, "slider", {0.7, 1.3}, nil, "Appearance", 5, "Adjust party frame size", nil, nil},
-    miniTextShow = {true, "checkbox", nil, nil, "Text", 6, "Show pet/target of target/party health and mana text", nil, nil},
+    miniDarkMode = {0, "slider", {0, 1}, nil, "外观", 1, "调整暗色模式强度", nil, nil},
+    miniColor = {{1, 1, 1}, "colour", nil, nil, "外观", 2, "更改迷你框体颜色", nil, nil},
+    petFrameScale = {1, "slider", {0.7, 1.3}, nil, "外观", 3, "调整宠物框体大小", nil, nil},
+    totFrameScale = {1, "slider", {0.7, 1.3}, nil, "外观", 4, "调整目标的目标框体大小", nil, nil},
+    partyFrameScale = {1, "slider", {0.7, 1.3}, nil, "外观", 5, "调整队伍框体大小", nil, nil},
+    miniTextShow = {true, "checkbox", nil, nil, "文本", 6, "显示宠物/目标的目标/队伍的生命值和法力值文本", nil, nil},
     frameFont = {"FRIZQT__.TTF", "dropdown", {
         "FRIZQT__.TTF",
         "Expressway",
@@ -19,19 +19,19 @@ DFRL:NewDefaults("Mini", {
         "BigNoodleTitling",
         "Continuum",
         "DieDieDie"
-    }, nil, "Text", 7, "Change the font used for all smaller frames", nil, nil},
-    noPetPercent = {true, "checkbox", nil, "miniTextShow", "Pet Text", 8, "Hide pet health and mana percent text", nil, nil},
-    miniPetTextMaxShow = {true, "checkbox", nil, "miniTextShow", "Pet Text", 9, "Show pet max health and mana text", nil, nil},
-    noTotPercent = {true, "checkbox", nil, "miniTextShow", "Target of Target Text", 10, "Hide target of target health and mana percent text", nil, nil},
-    miniTotTextMaxShow = {true, "checkbox", nil, "miniTextShow", "Target of Target Text", 11, "Show target of target max health and mana text", nil, nil},
-    noPartyPercent = {true, "checkbox", nil, "miniTextShow", "Party Text", 12, "Hide party health and mana percent text", nil, nil},
-    miniPartyTextMaxShow = {true, "checkbox", nil, "miniTextShow", "Party Text", 13, "Show party max health and mana text", nil, nil},
-    colorReaction = {true, "checkbox", nil, nil, "Health Bars", 14, "Color target of target health bars based on reaction", nil, nil},
-    colorClass = {false, "checkbox", nil, nil, "Health Bars", 15, "Color target of target and party health bars based on class", nil, nil},
-    enablePulse = {true, "checkbox", nil, nil, "Health Bars", 16, "Enable pulse animation on low health for all mini frames", nil, nil},
-    pulseColor = {{1, 1, 1}, "colour", nil, "enablePulse", "Health Bars", 17, "Color for pulse animation on all mini frames", nil, nil},
-    enableCutout = {true, "checkbox", nil, nil, "Health Bars", 18, "Enable cutout animation on damage for all mini frames", nil, nil},
-    cutoutColor = {{1, 0, 0}, "colour", nil, "enableCutout", "Health Bars", 19, "Color for cutout animation on all mini frames", nil, nil},
+    }, nil, "文本", 7, "更改所有小型框体使用的字体", nil, nil},
+    noPetPercent = {true, "checkbox", nil, "miniTextShow", "宠物文本", 8, "隐藏宠物生命值和法力值百分比文本", nil, nil},
+    miniPetTextMaxShow = {true, "checkbox", nil, "miniTextShow", "宠物文本", 9, "显示宠物最大生命值和法力值文本", nil, nil},
+    noTotPercent = {true, "checkbox", nil, "miniTextShow", "目标的目标文本", 10, "隐藏目标的目标生命值和法力值百分比文本", nil, nil},
+    miniTotTextMaxShow = {true, "checkbox", nil, "miniTextShow", "目标的目标文本", 11, "显示目标的目标最大生命值和法力值文本", nil, nil},
+    noPartyPercent = {true, "checkbox", nil, "miniTextShow", "队伍文本", 12, "隐藏队伍生命值和法力值百分比文本", nil, nil},
+    miniPartyTextMaxShow = {true, "checkbox", nil, "miniTextShow", "队伍文本", 13, "显示队伍最大生命值和法力值文本", nil, nil},
+    colorReaction = {true, "checkbox", nil, nil, "生命条", 14, "根据声望着色目标的目标生命条", nil, nil},
+    colorClass = {false, "checkbox", nil, nil, "生命条", 15, "根据职业着色目标的目标和队伍生命条", nil, nil},
+    enablePulse = {true, "checkbox", nil, nil, "生命条", 16, "为所有迷你框体启用低生命值脉冲动画", nil, nil},
+    pulseColor = {{1, 1, 1}, "colour", nil, "enablePulse", "生命条", 17, "所有迷你框体脉冲动画颜色", nil, nil},
+    enableCutout = {true, "checkbox", nil, nil, "生命条", 18, "为所有迷你框体启用伤害缺口动画", nil, nil},
+    cutoutColor = {{1, 0, 0}, "colour", nil, "enableCutout", "生命条", 19, "所有迷你框体缺口动画颜色", nil, nil},
 })
 
 DFRL:NewMod("Mini", 1, function()
@@ -398,7 +398,7 @@ DFRL:NewMod("Mini", 1, function()
                 offlineText:SetFont('Fonts\\FRIZQT__.TTF', 10, 'OUTLINE')
                 offlineText:SetPoint('CENTER', frame, 'CENTER', 15, 5.25)
                 offlineText:SetTextColor(0.7, 0.7, 0.7)
-                offlineText:SetText('OFFLINE')
+                offlineText:SetText('离线')
                 offlineText:Hide()
                 self.partyOfflineTexts = self.partyOfflineTexts or {}
                 self.partyOfflineTexts[i] = offlineText

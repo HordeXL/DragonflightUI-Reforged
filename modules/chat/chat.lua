@@ -1,10 +1,10 @@
 DFRL:NewDefaults("Chat", {
     enabled = {true},
-    showButtons = {true, "checkbox", nil, nil, "appearance", 1, "Show or hide chat buttons", "BUG: blizzards highlight blinks at the wrong position - fix soon", nil},
-    chatDarkMode = {0, "slider", {0, 1}, "showButtons", "appearance", 2, "Adjust dark mode intensity", nil, nil},
-    chatColor = {{1, 1, 1}, "colour", nil, "showButtons", "appearance", 3, "Change chat color", nil, nil},
-    blizzardButtons = {false, "checkbox", nil, "showButtons", "chat basic", 4, "Use original Blizzard chat buttons", nil, nil},
-    fadeChat = {false, "checkbox", nil, nil, "chat basic", 5, "Fade out chat text after 10 seconds", nil, nil}
+    showButtons = {true, "checkbox", nil, nil, "外观", 1, "显示或隐藏聊天按钮", "BUG: 暴雪高亮闪烁位置错误 - 即将修复", nil},
+    chatDarkMode = {0, "slider", {0, 1}, "showButtons", "外观", 2, "调整暗色模式强度", nil, nil},
+    chatColor = {{1, 1, 1}, "colour", nil, "showButtons", "外观", 3, "更改聊天颜色", nil, nil},
+    blizzardButtons = {false, "checkbox", nil, "showButtons", "聊天基础", 4, "使用原始暴雪聊天按钮", nil, nil},
+    fadeChat = {false, "checkbox", nil, nil, "聊天基础", 5, "10秒后淡出聊天文本", nil, nil}
 
 })
 

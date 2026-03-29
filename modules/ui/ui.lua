@@ -1,13 +1,13 @@
 DFRL:NewDefaults("Ui", {
     enabled = {true},
-    questLog = {false, "checkbox", nil, nil, "appearance", 1, "Enable dark mode for the questlog", nil, nil},
-    gameMenu = {false, "checkbox", nil, nil, "appearance", 2, "Enable dark mode for the game menu", "Only for Blizzards version", nil},
-    characterPanel = {false, "checkbox", nil, nil, "appearance", 3, "Enable dark mode for the character panel", nil, nil},
-    hideErrorMessage = {false, "checkbox", nil, nil, "ui tweaks", 4, "Hide the top UI error message (e.g. 'Spell is not ready')", nil, nil},
-    lowHpWarn = {true, "checkbox", nil, nil, "ui tweaks", 5, "Show red border when health is low", nil, nil},
-    lowHpThreshold = {70, "slider", {5, 95}, nil, "ui tweaks", 6, "Health threshold for low HP warning", nil, nil},
-    cameraDistanceFactor = {3, "slider", {1, 5}, nil, "ui tweaks", 7, "Extended maximum camera distance", nil, nil},
-    showPlates = {false, "checkbox", nil, nil, "ui tweaks", 8, "Show nameplates only in combat", nil, nil},
+    questLog = {false, "checkbox", nil, nil, "外观", 1, "为任务日志启用深色模式", nil, nil},
+    gameMenu = {false, "checkbox", nil, nil, "外观", 2, "为游戏菜单启用深色模式", "仅适用于暴雪版本", nil},
+    characterPanel = {false, "checkbox", nil, nil, "外观", 3, "为角色面板启用深色模式", nil, nil},
+    hideErrorMessage = {false, "checkbox", nil, nil, "界面调整", 4, "隐藏顶部UI错误信息（例如'法术未准备好'）", nil, nil},
+    lowHpWarn = {true, "checkbox", nil, nil, "界面调整", 5, "生命值低时显示红色边框", nil, nil},
+    lowHpThreshold = {70, "slider", {5, 95}, nil, "界面调整", 6, "低生命值警告阈值", nil, nil},
+    cameraDistanceFactor = {3, "slider", {1, 5}, nil, "界面调整", 7, "扩展最大镜头距离", nil, nil},
+    showPlates = {false, "checkbox", nil, nil, "界面调整", 8, "仅在战斗中显示姓名板", nil, nil},
 })
 
 DFRL:NewMod("Ui", 5, function()
@@ -29,7 +29,7 @@ DFRL:NewMod("Ui", 5, function()
             {"CharacterFrame", "CharacterFrameCloseButton", -36, -16},
             {"SpellBookFrame", "SpellBookCloseButton", -36, -15},
             {"TalentFrame", "TalentFrameCloseButton", -36, -17},
-            {"QuestLogFrame", "QuestLogFrameCloseButton", -91, -15},
+            {"QuestLogFrame", "QuestLogFrameCloseButton", -38, -15},
             {"FriendsFrame", "FriendsFrameCloseButton", -36, -15},
             {"ShopFrame", "ShopFrameFrameCloseButton", -9, -17},
             {"HelpFrame", "HelpFrameCloseButton", -50, -10},
@@ -254,20 +254,18 @@ DFRL:NewMod("Ui", 5, function()
         local f = CreateFrame("Frame")
         f:RegisterEvent("PLAYER_ENTERING_WORLD")
         f:SetScript("OnEvent", function ()
-            if UIOptionsFrame then
-                UIOptionsFrame:SetParent(UIParent)
-                UIOptionsFrame:SetWidth(1024)
-                UIOptionsFrame:SetHeight(700)
-                UIOptionsFrame:SetFrameStrata("DIALOG")
-                UIOptionsFrame:ClearAllPoints()
-                UIOptionsFrame:SetPoint("CENTER", 0, 0)
-                if UIOptionsFrameTab1 then UIOptionsFrameTab1:SetFrameLevel(10) end
-                if UIOptionsFrameTab2 then UIOptionsFrameTab2:SetFrameLevel(10) end
-                if UIOptionsFrameDefaults then UIOptionsFrameDefaults:SetFrameLevel(10) end
-                if UIOptionsFrameCancel then UIOptionsFrameCancel:SetFrameLevel(10) end
-                if UIOptionsFrameOkay then UIOptionsFrameOkay:SetFrameLevel(10) end
-                UIOptionsFrame:SetHitRectInsets(0,0,0,50)
-            end
+            UIOptionsFrame:SetParent(UIParent)
+            UIOptionsFrame:SetWidth(1024)
+            UIOptionsFrame:SetHeight(700)
+            UIOptionsFrame:SetFrameStrata("DIALOG")
+            UIOptionsFrame:ClearAllPoints()
+            UIOptionsFrame:SetPoint("CENTER", 0, 0)
+            UIOptionsFrameTab1:SetFrameLevel(10)
+            UIOptionsFrameTab2:SetFrameLevel(10)
+            UIOptionsFrameDefaults:SetFrameLevel(10)
+            UIOptionsFrameCancel:SetFrameLevel(10)
+            UIOptionsFrameOkay:SetFrameLevel(10)
+            UIOptionsFrame:SetHitRectInsets(0,0,0,50)
         end)
 
     end

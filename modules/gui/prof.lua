@@ -51,12 +51,12 @@ DFRL:NewMod("Gui-prof", 4, function()
 
     function Setup:ListFrame()
         if not self.headers then
-            self.grid:AddElement(2, 1, DFRL.tools.CreateCategoryHeader(nil, "Manage"))
+            self.grid:AddElement(2, 1, DFRL.tools.CreateCategoryHeader(nil, "管理"))
             self.headers = true
         end
 
         if not self.ui.usageText then
-            self.ui.usageText = DFRL.tools.CreateFont(panel, 14, "Usage:\n\n\n1) new profile: create and switch to a new profile\n\n2) switch: change active profile\n\n3) copy: copies all settings into active profile\n\n4) delete: delete profile and switch back to default\n\n5)reset: reset active profile to the default settings\n\n\ndoes not affect shagutweaks\n\nBUG: DOUBLE CLICK DELETE AFTER NEW PROFILE\n\nBUG: ENTER PROFILE NAME STAYS", {.5, .5, .5}, "LEFT")
+            self.ui.usageText = DFRL.tools.CreateFont(panel, 14, "使用方法:\n\n\n1) 新建配置: 创建并切换到一个新配置文件\n\n2) 切换: 更改活动配置文件\n\n3) 复制: 将所有设置复制到活动配置文件\n\n4) 删除: 删除配置文件并切换回默认配置\n\n5) 重置: 将活动配置文件重置为默认设置\n\n\n不会影响 ShaguTweaks\n\nBUG: 新建配置文件后需双击删除\n\nBUG: 输入的配置文件名称会保留", {.5, .5, .5}, "LEFT")
             self.grid:AddElement(5, 4, self.ui.usageText)
         end
         if not self.ui.frame then
@@ -73,10 +73,11 @@ DFRL:NewMod("Gui-prof", 4, function()
         local curProf = self.curProf[char] or "Default"
         if not self.ui.curText then
             self.ui.curText = self.ui.frame:CreateFontString(nil, "OVERLAY")
-            self.ui.curText:SetFont(self.font .. "BigNoodleTitling.ttf", self.TEXT_SIZE, "OUTLINE")
+            self.ui.curText:SetFont("Fonts\\FRIZQT__.TTF", self.TEXT_SIZE, "OUTLINE")
             self.ui.curText:SetPoint("TOPLEFT", self.ui.frame, "TOPLEFT", 10, -10)
         end
-        self.ui.curText:SetText("Current:   |cff80ff80" .. curProf .. "|r")
+        local displayCurProf = curProf == "Default" and "默认" or curProf
+        self.ui.curText:SetText("当前: |cff80ff80" .. displayCurProf .. "|r")
         for _, text in pairs(self.ui.texts) do
             text:Hide()
         end
@@ -111,13 +112,14 @@ DFRL:NewMod("Gui-prof", 4, function()
             profCount = profCount + 1
 
             local text = self.ui.frame:CreateFontString(nil, "OVERLAY")
-            text:SetFont(self.font .. "BigNoodleTitling.ttf", self.TEXT_SIZE, "OUTLINE")
+            text:SetFont("Fonts\\FRIZQT__.TTF", self.TEXT_SIZE, "OUTLINE")
             text:SetPoint("TOPLEFT", self.ui.frame, "TOPLEFT", 10, yOffset)
-            text:SetText(name)
+            local displayName = name == "Default" and "默认" or name
+            text:SetText(displayName)
             table.insert(self.ui.texts, text)
             if name ~= "Default" then
                 local profName = name
-                local switchBtn = DFRL.tools.CreateButton(self.ui.frame, "Switch", 50, 20, true, {0.5, 1, 0.5})
+                local switchBtn = DFRL.tools.CreateButton(self.ui.frame, "切换", 50, 20, true, {0.5, 1, 0.5})
                 switchBtn:SetPoint("TOPLEFT", self.ui.frame, "TOPLEFT", 125, yOffset)
                 switchBtn.profName = profName
                 switchBtn:SetScript("OnClick", function()
@@ -132,12 +134,13 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(0, 1, 0)
-                    Setup.ui.warner:SetText("switched to " .. clickedName)
+                    local displayClickedName = clickedName == "Default" and "默认" or clickedName
+                    Setup.ui.warner:SetText("已切换到 " .. displayClickedName)
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                 end)
                 table.insert(self.ui.switchBtns, switchBtn)
-                local copyBtn = DFRL.tools.CreateButton(self.ui.frame, "Copy", 50, 20, true)
+                local copyBtn = DFRL.tools.CreateButton(self.ui.frame, "复制", 50, 20, true)
                 copyBtn:SetPoint("TOPLEFT", self.ui.frame, "TOPLEFT", 180, yOffset)
                 copyBtn.profName = profName
                 copyBtn:SetScript("OnClick", function()
@@ -152,12 +155,12 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(1, 1, 0)
-                    Setup.ui.warner:SetText("profile copied from " .. clickedName)
+                    Setup.ui.warner:SetText("配置已从 " .. clickedName .. " 复制")
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                 end)
                 table.insert(self.ui.copyBtns, copyBtn)
-                local delBtn = DFRL.tools.CreateButton(self.ui.frame, "Delete", 50, 20, true, {1, 0.5, 0.5})
+                local delBtn = DFRL.tools.CreateButton(self.ui.frame, "删除", 50, 20, true, {1, 0.5, 0.5})
                 delBtn:SetPoint("TOPLEFT", self.ui.frame, "TOPLEFT", 235, yOffset)
                 delBtn.profName = profName
                 delBtn:SetScript("OnClick", function()
@@ -171,7 +174,8 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(1, 0, 0)
-                    Setup.ui.warner:SetText(clickedName .. " deleted")
+                    local displayClickedName = clickedName == "Default" and "默认" or clickedName
+                    Setup.ui.warner:SetText(displayClickedName .. " 已删除")
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                 end)
@@ -220,7 +224,7 @@ DFRL:NewMod("Gui-prof", 4, function()
 
     function Setup:ExtraButtons()
         if not self.ui.newProfileBtn then
-            self.ui.newProfileBtn = DFRL.tools.CreateButton(panel, "New Profile", 100, 30, true)
+            self.ui.newProfileBtn = DFRL.tools.CreateButton(panel, "新建配置", 100, 30, true)
             self.ui.newProfileBtn:SetPoint("TOPLEFT", self.ui.frame, "TOPRIGHT", 20, -25)
             self.ui.newProfileBtn:SetScript("OnClick", function()
                 local count = 0
@@ -233,7 +237,7 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(1, 0, 0)
-                    Setup.ui.warner:SetText("MAX PROFILES REACHED")
+                    Setup.ui.warner:SetText("已达到最大配置文件数量")
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                     return
@@ -241,7 +245,7 @@ DFRL:NewMod("Gui-prof", 4, function()
                 if not self.ui.editBox then
                     self.ui.editBox = DFRL.tools.CreateEditBox(panel, 200, 30, true, nil, 10)
                     self.ui.editBox:SetPoint("TOP", self.ui.frame, "BOTTOM", 0, -6)
-                    self.ui.editBoxLabel = DFRL.tools.CreateFontWarner(panel, 14, "enter profile name", {.9, .9, .9})
+                    self.ui.editBoxLabel = DFRL.tools.CreateFontWarner(panel, 14, "输入配置文件名称", {.9, .9, .9})
                     self.ui.editBoxLabel:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, -45)
                     self.ui.editBox:SetScript("OnEnterPressed", function()
                         local profileName = self.ui.editBox:GetText()
@@ -259,7 +263,7 @@ DFRL:NewMod("Gui-prof", 4, function()
                                 Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                             end
                             Setup.ui.warner:SetTextColor(0, 1, 0)
-                            Setup.ui.warner:SetText("new profile created")
+                            Setup.ui.warner:SetText("新配置文件已创建")
                             Setup.ui.warner:Show()
                             Setup:RestartWarnerPulse()
                         end
@@ -275,7 +279,7 @@ DFRL:NewMod("Gui-prof", 4, function()
 
         end
         if not self.ui.resetBtn then
-            self.ui.resetBtn = DFRL.tools.CreateButton(panel, "Reset", 100, 30, true, {1, 0.5, 0.5})
+            self.ui.resetBtn = DFRL.tools.CreateButton(panel, "重置", 100, 30, true, {1, 0.5, 0.5})
             self.ui.resetBtn:SetPoint("TOPLEFT", self.ui.newProfileBtn, "BOTTOMLEFT", 0, -10)
             self.ui.resetBtn:SetScript("OnClick", function()
                 local success, _ = pcall(function()
@@ -288,7 +292,7 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(0, 1, 0)
-                    Setup.ui.warner:SetText("CURRENT PROFILE RESET")
+                    Setup.ui.warner:SetText("当前配置已重置")
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                 else
@@ -297,7 +301,7 @@ DFRL:NewMod("Gui-prof", 4, function()
                         Setup.ui.warner:SetPoint("TOP", Setup.ui.frame, "BOTTOM", 0, 25)
                     end
                     Setup.ui.warner:SetTextColor(1, 0, 0)
-                    Setup.ui.warner:SetText("PROFILE RESET FAILED")
+                    Setup.ui.warner:SetText("配置重置失败")
                     Setup.ui.warner:Show()
                     Setup:RestartWarnerPulse()
                 end

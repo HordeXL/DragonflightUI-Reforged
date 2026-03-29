@@ -1,10 +1,10 @@
 
 DFRL:NewDefaults("RangeIndicator", {
     enabled = { true },
-    indicatorDark = {false, "checkbox", nil, nil, "appearance", 1, "Use dark color instead of red", nil, nil},
-    indicatorFade = {true, "checkbox", nil, nil, "appearance", 2, "Enable fade in/out animation", nil, nil},
-    indicatorAlpha = {.5, "slider", {0, 1}, nil, "appearance", 3, "Adjust range indicator opacity", nil, nil},
-    indicatorSimple = {false, "checkbox", nil, nil, "appearance", 4, "Use simple X instead of texture", nil, nil},
+    indicatorDark = {false, "checkbox", nil, nil, "外观", 1, "使用深色代替红色", nil, nil},
+    indicatorFade = {true, "checkbox", nil, nil, "外观", 2, "启用淡入/淡出动画", nil, nil},
+    indicatorAlpha = {.5, "slider", {0, 1}, nil, "外观", 3, "调整距离指示器不透明度", nil, nil},
+    indicatorSimple = {false, "checkbox", nil, nil, "外观", 4, "使用简单的X代替纹理", nil, nil},
 })
 
 DFRL:NewMod("RangeIndicator", 1, function()

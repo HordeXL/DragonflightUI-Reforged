@@ -1,21 +1,21 @@
 DFRL:NewDefaults("Map", {
     enabled = {true},
-    mapDarkMode = {0, "slider", {0, 1}, nil, "appearance", 1, "Adjust dark mode intensity", nil, nil},
-    mapColor = {{1, 1, 1}, "colour", nil, nil, "appearance", 2, "Change map color", nil, nil},
-    mapSquare = {false, "checkbox", nil, nil, "map basic", 3, "Show the Minimap Square design", nil, nil},
-    showSunMoon = {false, "checkbox", nil, nil, "map basic", 4, "Show Blzzards sun/moon indicator", nil, nil},
-    mapSize = {180, "slider", {140, 350}, nil, "map basic", 5, "Adjusts the overall size of the minimap", "Bug: move char after setting (unfixable)", nil},
-    mapAlpha = {1, "slider", {0.1, 1}, nil, "map basic", 6, "Adjusts transparency of the entire minimap", nil, nil},
-    mapShadow = {true, "checkbox", nil, nil, "map shadow", 7, "Show or hide the shadow inside the minimap", nil, nil},
-    alphaShadow = {0.3, "slider", {0.1, 1}, nil, "map shadow", 8, "Adjusts transparency of the minimap shadow", nil, nil},
-    showZoom = {true, "checkbox", nil, nil, "map zoom", 9, "Show or hide zoom buttons on the minimap", nil, nil},
-    scaleZoom = {0.8, "slider", {0.2, 2}, nil, "map zoom", 10, "Adjusts size of zoom buttons", nil, nil},
-    alphaZoom = {1, "slider", {0.1, 1}, nil, "map zoom", 11, "Adjusts transparency of zoom buttons", nil, nil},
-    zoomX = {-5, "slider", {-100, 100}, nil, "map zoom", 12, "Adjusts horizontal position of zoom buttons", nil, nil},
-    zoomY = {40, "slider", {-100, 100}, nil, "map zoom", 13, "Adjusts vertical position of zoom buttons", nil, nil},
-    showTopPanel = {true, "checkbox", nil, nil, "top panel", 14, "Show or hide the top information panel", nil, nil},
-    topPanelWidth = {180, "slider", {100, 600}, nil, "top panel", 15, "Adjusts the width of the top panel", nil, nil},
-    topPanelHeight = {12, "slider", {5, 50}, nil, "top panel", 16, "Adjusts the height of the top panel", nil, nil},
+    mapDarkMode = {0, "slider", {0, 1}, nil, "外观", 1, "调整暗色模式强度", nil, nil},
+    mapColor = {{1, 1, 1}, "colour", nil, nil, "外观", 2, "更改地图颜色", nil, nil},
+    mapSquare = {false, "checkbox", nil, nil, "小地图基础", 3, "显示方形小地图设计", nil, nil},
+    showSunMoon = {false, "checkbox", nil, nil, "小地图基础", 4, "显示暴雪日月指示器", nil, nil},
+    mapSize = {180, "slider", {140, 350}, nil, "小地图基础", 5, "调整小地图整体大小", "Bug: 设置后移动角色（无法修复）", nil},
+    mapAlpha = {1, "slider", {0.1, 1}, nil, "小地图基础", 6, "调整整个小地图的透明度", nil, nil},
+    mapShadow = {true, "checkbox", nil, nil, "小地图阴影", 7, "显示或隐藏小地图内部阴影", nil, nil},
+    alphaShadow = {0.3, "slider", {0.1, 1}, nil, "小地图阴影", 8, "调整小地图阴影透明度", nil, nil},
+    showZoom = {true, "checkbox", nil, nil, "小地图缩放", 9, "显示或隐藏小地图缩放按钮", nil, nil},
+    scaleZoom = {0.8, "slider", {0.2, 2}, nil, "小地图缩放", 10, "调整缩放按钮大小", nil, nil},
+    alphaZoom = {1, "slider", {0.1, 1}, nil, "小地图缩放", 11, "调整缩放按钮透明度", nil, nil},
+    zoomX = {-5, "slider", {-100, 100}, nil, "小地图缩放", 12, "调整缩放按钮水平位置", nil, nil},
+    zoomY = {40, "slider", {-100, 100}, nil, "小地图缩放", 13, "调整缩放按钮垂直位置", nil, nil},
+    showTopPanel = {true, "checkbox", nil, nil, "顶部面板", 14, "显示或隐藏顶部信息面板", nil, nil},
+    topPanelWidth = {180, "slider", {100, 600}, nil, "顶部面板", 15, "调整顶部面板宽度", nil, nil},
+    topPanelHeight = {12, "slider", {5, 50}, nil, "顶部面板", 16, "调整顶部面板高度", nil, nil},
     topPanelFont = {"FRIZQT__.TTF", "dropdown", {
         "FRIZQT__.TTF",
         "Expressway",
@@ -29,22 +29,30 @@ DFRL:NewDefaults("Map", {
         "BigNoodleTitling",
         "Continuum",
         "DieDieDie"
-    }, nil, "mini text settings", 17, "Change the font used for the minimap", nil, nil},
-    zoneTextSize = {10, "slider", {6, 30}, nil, "top panel zone", 18, "Adjusts font size of the zone text", nil, nil},
-    zoneTextY = {-3, "slider", {-50, 50}, nil, "top panel zone", 19, "Adjusts vertical position of the zone text", nil, nil},
-    zoneTextX = {4, "slider", {-50, 50}, nil, "top panel zone", 20, "Adjusts horizontal position of the zone text", nil, nil},
-    mapTime = {true, "checkbox", nil, nil, "top panel time", 21, "Show or hide the time display on the minimap", nil, nil},
-    timeSize = {10, "slider", {6, 30}, nil, "top panel time", 22, "Adjusts font size of the time display", nil, nil},
-    timeY = {-3, "slider", {-50, 50}, nil, "top panel time", 23, "Adjusts vertical position of the time display", nil, nil},
-    timeX = {-4, "slider", {-50, 50}, nil, "top panel time", 24, "Adjusts horizontal position of the time display", nil, nil},
-    timeFormat12h = {false, "checkbox", nil, nil, "top panel time", 25, "Use 12-hour AM/PM time format instead of 24-hour", nil, nil},
-    textColor = {false, "checkbox", nil, nil, "ext. PizzaWorldBuffs", 26, "Colorize the PizzaWorldBuffs Alliance/Horde text", "BUG: slash commands not implemented yet - fix soon", nil},
+    }, nil, "小地图文本设置", 17, "更改小地图使用的字体", nil, nil},
+    zoneTextSize = {10, "slider", {6, 30}, nil, "顶部面板区域", 18, "调整区域文本字体大小", nil, nil},
+    zoneTextY = {-3, "slider", {-50, 50}, nil, "顶部面板区域", 19, "调整区域文本垂直位置", nil, nil},
+    zoneTextX = {4, "slider", {-50, 50}, nil, "顶部面板区域", 20, "调整区域文本水平位置", nil, nil},
+    mapTime = {true, "checkbox", nil, nil, "顶部面板时间", 21, "显示或隐藏小地图时间显示", nil, nil},
+    timeSize = {10, "slider", {6, 30}, nil, "顶部面板时间", 22, "调整时间显示字体大小", nil, nil},
+    timeY = {-3, "slider", {-50, 50}, nil, "顶部面板时间", 23, "调整时间显示垂直位置", nil, nil},
+    timeX = {-4, "slider", {-50, 50}, nil, "顶部面板时间", 24, "调整时间显示水平位置", nil, nil},
+    timeFormat12h = {false, "checkbox", nil, nil, "顶部面板时间", 25, "使用12小时制AM/PM格式代替24小时制", nil, nil},
+    textColor = {false, "checkbox", nil, nil, "扩展.PizzaWorldBuffs", 26, "为PizzaWorldBuffs联盟/部落文本着色", "BUG: 斜杠命令尚未实现 - 即将修复", nil},
 })
 
 DFRL:NewMod("Map", 1, function()
     local f = CreateFrame("Frame")
     f:RegisterEvent("PLAYER_ENTERING_WORLD")
     f:SetScript("OnEvent", function()
+        -- helper function
+        local function CalculateTexOffset(size)
+            local minSize, maxSize = 140, 350
+            local minOffset, maxOffset = 10, 26
+            local offset = minOffset + (size - minSize) * (maxOffset - minOffset) / (maxSize - minSize)
+            return offset
+        end
+
         -- setup
         local Setup = {
             texpath = "Interface\\AddOns\\DragonflightUI-Reforged\\media\\tex\\minimap\\",
@@ -77,11 +85,51 @@ DFRL:NewMod("Map", 1, function()
         end
 
         function Setup:Minimap()
-            self.minimapBorder = Minimap:CreateTexture("MinimapBorder", "OVERLAY")
-            self.minimapBorder:SetTexture(self.texpath .. "uiminimapborder.tga")
+            -- 先设置Minimap大小
+            local mapSize = DFRL:GetTempDB("Map", "mapSize") or 180
+            Minimap:SetHeight(mapSize)
+            Minimap:SetWidth(mapSize)
 
+            self.minimapBorder = Minimap:CreateTexture("MinimapBorder", "OVERLAY")
             self.minimapShadow = Minimap:CreateTexture("MinimapShadow", "BORDER")
-            self.minimapShadow:SetTexture(self.texpath .. "uiminimapshadow.tga")
+
+            -- 根据 mapSquare 设置选择纹理
+            local isSquare = DFRL:GetTempDB("Map", "mapSquare")
+            if isSquare then
+                self.minimapBorder:SetTexture(self.texpath .. "map_dragonflight_square2.tga")
+                self.minimapShadow:SetTexture(self.texpath .. "map_dragonflight_square_shadow.tga")
+                Minimap:SetMaskTexture("Interface\\BUTTONS\\WHITE8X8")
+            else
+                self.minimapBorder:SetTexture(self.texpath .. "uiminimapborder.tga")
+                self.minimapShadow:SetTexture(self.texpath .. "uiminimapshadow.tga")
+                Minimap:SetMaskTexture("Textures\\MinimapMask")
+            end
+
+            local offset = CalculateTexOffset(mapSize)
+
+            self.minimapBorder:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -offset, offset)
+            self.minimapBorder:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", offset, -offset)
+
+            self.minimapShadow:SetPoint("TOPLEFT", Minimap, "TOPLEFT", -offset, offset)
+            self.minimapShadow:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", offset, -offset)
+
+            -- 设置初始颜色
+            local intensity = DFRL:GetTempDB("Map", "mapDarkMode") or 0
+            local mapColor = DFRL:GetTempDB("Map", "mapColor") or {1, 1, 1}
+            local r, g, b = mapColor[1] * (1 - intensity), mapColor[2] * (1 - intensity), mapColor[3] * (1 - intensity)
+            self.minimapBorder:SetVertexColor(r, g, b)
+
+            -- 设置阴影初始透明度
+            local alphaShadow = DFRL:GetTempDB("Map", "alphaShadow") or 0.3
+            self.minimapShadow:SetAlpha(alphaShadow)
+
+            -- 根据 mapShadow 设置显示/隐藏阴影
+            local showShadow = DFRL:GetTempDB("Map", "mapShadow")
+            if showShadow == false then
+                self.minimapShadow:Hide()
+            else
+                self.minimapShadow:Show()
+            end
 
             Minimap:EnableMouseWheel(true)
             Minimap:SetScript("OnMouseWheel", function()
@@ -198,9 +246,6 @@ DFRL:NewMod("Map", 1, function()
 
             BuffButton16:ClearAllPoints()
             BuffButton16:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -150)
-
-	    BuffButton32:ClearAllPoints()
-            BuffButton32:SetPoint("TOPRIGHT", Setup.topPanel, "TOPLEFT", -50, -200)
         end
 
         function Setup:Tracker()
@@ -232,17 +277,19 @@ DFRL:NewMod("Map", 1, function()
         end
 
         function Setup:LFT()
-            LFTMinimapButton:Hide()
-            LFTMinimapButton:ClearAllPoints()
-            LFTMinimapButton:SetParent(Minimap)
-            LFTMinimapButton:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", 45, 20)
-            if LFT_OnQueueEnter and LFT_OnQueueLeave then
-                hooksecurefunc("LFT_OnQueueEnter", function()
-                    LFTMinimapButton:Show()
-                end)
-                hooksecurefunc("LFT_OnQueueLeave", function()
-                    LFTMinimapButton:Hide()
-                end)
+            if LFTMinimapButton then
+                LFTMinimapButton:Hide()
+                LFTMinimapButton:ClearAllPoints()
+                LFTMinimapButton:SetParent(Minimap)
+                LFTMinimapButton:SetPoint("TOPLEFT", Minimap, "BOTTOMLEFT", 45, 20)
+                if LFT_OnQueueEnter and LFT_OnQueueLeave then
+                    hooksecurefunc("LFT_OnQueueEnter", function()
+                        LFTMinimapButton:Show()
+                    end)
+                    hooksecurefunc("LFT_OnQueueLeave", function()
+                        LFTMinimapButton:Hide()
+                    end)
+                end
             end
         end
 
@@ -506,14 +553,6 @@ DFRL:NewMod("Map", 1, function()
 
         -- callbacks
         local callbacks = {}
-
-        local function CalculateTexOffset(size)
-            local minSize, maxSize = 140, 350
-            local minOffset, maxOffset = 10, 26
-
-            local offset = minOffset + (size - minSize) * (maxOffset - minOffset) / (maxSize - minSize)
-            return offset
-        end
 
         callbacks.mapDarkMode = function(value)
             local intensity = DFRL:GetTempDB("Map", "mapDarkMode")

@@ -37,33 +37,33 @@ DFRL:NewMod("Gui-info", 5, function()
             self.dfFrame:SetHeight(1)
             self.dfFrame:SetWidth(300)
             self.grid:AddElement(2, 2, self.dfFrame)
-            self.grid:AddElement(2, 1, DFRL.tools.CreateCategoryHeader(nil, "Dragonflight Info"))
-            self.grid:AddElement(1, 3, DFRL.tools.CreateCategoryHeader(nil, "System", nil, 100))
-            self.grid:AddElement(3, 3, DFRL.tools.CreateCategoryHeader(nil, "Info", nil, 100))
-            self.grid:AddElement(1, 5, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Addon Version:", nil, "LEFT"))
+            self.grid:AddElement(2, 1, DFRL.tools.CreateCategoryHeader(nil, "Dragonflight 信息"))
+            self.grid:AddElement(1, 3, DFRL.tools.CreateCategoryHeader(nil, "系统", nil, 100))
+            self.grid:AddElement(3, 3, DFRL.tools.CreateCategoryHeader(nil, "信息", nil, 100))
+            self.grid:AddElement(1, 5, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "插件版本:", nil, "LEFT"))
             self.grid:AddElement(3, 5, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, DFRL:GetInfoOrCons("version"), {0.5, 1, 0.5}))
-            self.grid:AddElement(1, 6, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Database Version:", nil, "LEFT"))
+            self.grid:AddElement(1, 6, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "数据库版本:", nil, "LEFT"))
             self.grid:AddElement(3, 6, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, DFRL.DBversion, {0.5, 1, 0.5}))
             local total = 0
             for _ in pairs(DFRL.performance) do
                 total = total + 1
             end
-            self.grid:AddElement(1, 7, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Last Update:", nil, "LEFT"))
-            self.grid:AddElement(3, 7, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, (DFRL_DB_SETUP and DFRL_DB_SETUP.lastVersionCheck and DFRL_DB_SETUP.lastVersionCheck.date) or "Never", {0.5, 1, 0.5}))
-            self.grid:AddElement(1, 8, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Active Modules:", nil, "LEFT"))
+            self.grid:AddElement(1, 7, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "最后更新:", nil, "LEFT"))
+            self.grid:AddElement(3, 7, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, (DFRL_DB_SETUP and DFRL_DB_SETUP.lastVersionCheck and DFRL_DB_SETUP.lastVersionCheck.date) or "从未", {0.5, 1, 0.5}))
+            self.grid:AddElement(1, 8, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "活动模块:", nil, "LEFT"))
             self.grid:AddElement(3, 8, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, total, {0.5, 1, 0.5}))
 
             local clientVersion, buildNumber, _, _ = GetBuildInfo()
             local locale = GetLocale()
             local realm = GetRealmName()
 
-            self.grid:AddElement(1, 10, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Client Version:", nil, "LEFT"))
+            self.grid:AddElement(1, 10, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "客户端版本:", nil, "LEFT"))
             self.grid:AddElement(3, 10, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, clientVersion, {0.5, 0.5, 0.5}))
-            self.grid:AddElement(1, 11, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Build Number:", nil, "LEFT"))
+            self.grid:AddElement(1, 11, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "构建版本:", nil, "LEFT"))
             self.grid:AddElement(3, 11, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, buildNumber, {0.5, 0.5, 0.5}))
-            self.grid:AddElement(1, 12, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Locale:", nil, "LEFT"))
+            self.grid:AddElement(1, 12, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "语言:", nil, "LEFT"))
             self.grid:AddElement(3, 12, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, locale, {0.5, 0.5, 0.5}))
-            self.grid:AddElement(1, 13, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "Realm:", nil, "LEFT"))
+            self.grid:AddElement(1, 13, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, "服务器:", nil, "LEFT"))
             self.grid:AddElement(3, 13, DFRL.tools.CreateFont(self.dfFrame, self.TEXT_SIZE, realm, {0.5, 0.5, 0.5}))
             T.GradientLine(self.dfFrame, "TOP", 35)
             T.GradientLine(self.dfFrame, "TOP", -5)
@@ -77,15 +77,15 @@ DFRL:NewMod("Gui-info", 5, function()
             self.addonsFrame:SetHeight(1)
             self.addonsFrame:SetWidth(300)
             self.grid:AddElement(5, 2, self.addonsFrame)
-            self.grid:AddElement(5, 1, DFRL.tools.CreateCategoryHeader(nil, "Supported Addons"))
-            self.grid:AddElement(4, 3, DFRL.tools.CreateCategoryHeader(nil, "Addon", nil, 100))
-            self.grid:AddElement(6, 3, DFRL.tools.CreateCategoryHeader(nil, "Status", nil, 100))
+            self.grid:AddElement(5, 1, DFRL.tools.CreateCategoryHeader(nil, "支持的插件"))
+            self.grid:AddElement(4, 3, DFRL.tools.CreateCategoryHeader(nil, "插件", nil, 100))
+            self.grid:AddElement(6, 3, DFRL.tools.CreateCategoryHeader(nil, "状态", nil, 100))
             self.grid:AddElement(4, 5, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, "ShaguTweaks", nil, "LEFT"))
-            self.grid:AddElement(6, 5, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon1 and "Installed" or "Not installed", DFRL.addon1 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
+            self.grid:AddElement(6, 5, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon1 and "已安装" or "未安装", DFRL.addon1 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
             self.grid:AddElement(4, 6, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, "ShaguTweaks-extras", nil, "LEFT"))
-            self.grid:AddElement(6, 6, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon2 and "Installed" or "Not installed", DFRL.addon2 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
+            self.grid:AddElement(6, 6, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon2 and "已安装" or "未安装", DFRL.addon2 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
             self.grid:AddElement(4, 7, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, "Bagshui", nil, "LEFT"))
-            self.grid:AddElement(6, 7, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon3 and "Installed" or "Not installed", DFRL.addon3 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
+            self.grid:AddElement(6, 7, DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, DFRL.addon3 and "已安装" or "未安装", DFRL.addon3 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}))
 
 self.grid:AddElement(4, 8,
     DFRL.tools.CreateFont(self.addonsFrame, self.TEXT_SIZE, "Immersion", nil, "LEFT")
@@ -95,7 +95,7 @@ self.grid:AddElement(6, 8,
     DFRL.tools.CreateFont(
         self.addonsFrame,
         self.TEXT_SIZE,
-        DFRL.addon4 and "Installed" or "Not installed",
+        DFRL.addon4 and "已安装" or "未安装",
         DFRL.addon4 and {0.5, 1, 0.5} or {0.5, 0.5, 0.5}
     )
 )
@@ -112,10 +112,10 @@ self.grid:AddElement(6, 8,
             self.perfFrame:SetHeight(1)
             self.perfFrame:SetWidth(300)
             self.grid:AddElement(2, 17 + self.AREA_LINE, self.perfFrame)
-            self.grid:AddElement(2, 16 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Performance"))
-            self.grid:AddElement(1, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Module", nil, 100))
-            self.grid:AddElement(2, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Time (ms)", nil, 100))
-            self.grid:AddElement(3, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Memory (kb)", nil, 100))
+            self.grid:AddElement(2, 16 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "性能"))
+            self.grid:AddElement(1, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "模块", nil, 100))
+            self.grid:AddElement(2, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "时间 (毫秒)", nil, 100))
+            self.grid:AddElement(3, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "内存 (KB)", nil, 100))
             T.GradientLine(self.perfFrame, "TOP", 35)
             T.GradientLine(self.perfFrame, "TOP", -5)
             self.perf = true
@@ -142,7 +142,7 @@ self.grid:AddElement(6, 8,
 
         local line = 20 + self.AREA_LINE
         if not self.perfTexts[1] then
-            self.perfTexts[1] = DFRL.tools.CreateFont(self.perfFrame, self.TEXT_SIZE, "TOTAL:", {1, 0.5, 0.5}, "LEFT")
+            self.perfTexts[1] = DFRL.tools.CreateFont(self.perfFrame, self.TEXT_SIZE, "总计:", {1, 0.5, 0.5}, "LEFT")
             self.perfTexts[2] = DFRL.tools.CreateFont(self.perfFrame, self.TEXT_SIZE, "", {0.5, 1, 0.5})
             self.perfTexts[3] = DFRL.tools.CreateFont(self.perfFrame, self.TEXT_SIZE, "", {0.5, 1, 0.5})
             self.grid:AddElement(1, line, self.perfTexts[1])
@@ -198,9 +198,9 @@ self.grid:AddElement(6, 8,
             self.scriptsFrame:SetHeight(1)
             self.scriptsFrame:SetWidth(300)
             self.grid:AddElement(5, 17 + self.AREA_LINE, self.scriptsFrame)
-            self.grid:AddElement(5, 16 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Active Scripts"))
-            self.grid:AddElement(4, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Script", nil, 100))
-            self.grid:AddElement(6, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "Status", nil, 100))
+            self.grid:AddElement(5, 16 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "活动脚本"))
+            self.grid:AddElement(4, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "脚本", nil, 100))
+            self.grid:AddElement(6, 18 + self.AREA_LINE, DFRL.tools.CreateCategoryHeader(nil, "状态", nil, 100))
             T.GradientLine(self.scriptsFrame, "TOP", 35)
             T.GradientLine(self.scriptsFrame, "TOP", -5)
             self.scripts = true
@@ -217,7 +217,7 @@ self.grid:AddElement(6, 8,
 
         local line = 20 + self.AREA_LINE
         if not self.totalText then
-            self.totalText = DFRL.tools.CreateFont(self.scriptsFrame, self.TEXT_SIZE, "TOTAL:", {1, 0.5, 0.5}, "LEFT")
+            self.totalText = DFRL.tools.CreateFont(self.scriptsFrame, self.TEXT_SIZE, "总计:", {1, 0.5, 0.5}, "LEFT")
             self.grid:AddElement(4, line, self.totalText)
         end
         if not self.totalCountText then
@@ -264,7 +264,7 @@ self.grid:AddElement(6, 8,
             scriptText:SetText(scriptName)
             scriptText:SetTextColor(1, 1, 1)
 
-            statusText:SetText(DFRL.activeScripts[scriptName] and "ON" or "OFF")
+            statusText:SetText(DFRL.activeScripts[scriptName] and "开启" or "关闭")
             statusText:SetTextColor(DFRL.activeScripts[scriptName] and 0 or 0.5, DFRL.activeScripts[scriptName] and 1 or 0.5, DFRL.activeScripts[scriptName] and 0 or 0.5)
 
             index = index + 1
@@ -294,7 +294,7 @@ self.grid:AddElement(6, 8,
             scriptText:SetText(scriptName)
             scriptText:SetTextColor(1, 1, 1)
 
-            statusText:SetText(DFRL.activeScripts[scriptName] and "ON" or "OFF")
+            statusText:SetText(DFRL.activeScripts[scriptName] and "开启" or "关闭")
             statusText:SetTextColor(DFRL.activeScripts[scriptName] and 0 or 0.5, DFRL.activeScripts[scriptName] and 1 or 0.5, DFRL.activeScripts[scriptName] and 0 or 0.5)
 
             index = index + 1

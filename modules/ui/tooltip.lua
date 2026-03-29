@@ -1,8 +1,8 @@
 DFRL:NewDefaults("Tooltip", {
     enabled = {true},
-    toolTipMouse = {false, "checkbox", nil, nil, "tweaks", 1, "Show the tooltip above your cursor", nil, nil},
-    toolTipX = {0, "slider", {-400, 200, 15}, nil, "tweaks", 2, "Adjust X offset of the tooltip", nil, nil},
-    toolTipY = {0, "slider", {-200, 200, 15}, nil, "tweaks", 3, "Adjust Y offset of the tooltip", nil, nil},
+    toolTipMouse = {false, "checkbox", nil, nil, "调整", 1, "在光标上方显示提示框", nil, nil},
+    toolTipX = {0, "slider", {-400, 200, 15}, nil, "调整", 2, "调整提示框X轴偏移", nil, nil},
+    toolTipY = {0, "slider", {-200, 200, 15}, nil, "调整", 3, "调整提示框Y轴偏移", nil, nil},
 })
 
 DFRL:NewMod("Tooltip", 1, function()

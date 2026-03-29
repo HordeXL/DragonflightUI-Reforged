@@ -1,11 +1,11 @@
 DFRL:NewDefaults("Cast", {
     enabled = {true},
-    castDarkMode = {0, "slider", {0, 1}, nil, "appearance", 1, "Adjust dark mode intensity", nil, nil},
-    castColor = {{0.9, 0.9, 0.9}, "colour", nil, nil, "appearance", 2, "Change cast color", nil, nil},
-    setFillDirection = {"left", "dropdown", {"left", "right", "center"}, nil, "castbar Basic", 3, "Set fill direction", nil, nil},
-    showShadow = {true, "checkbox", nil, nil, "castbar Basic", 4, "Show drop shadow below the castbar", nil, nil},
-    barWidth = {200, "slider", {120, 350}, nil, "castbar Basic", 5, "Change castbar width", nil, nil},
-    barHeight = {16, "slider", {10, 30}, nil, "castbar Basic", 6, "Change castbar height", nil, nil},
+    castDarkMode = {0, "slider", {0, 1}, nil, "外观", 1, "调整暗色模式强度", nil, nil},
+    castColor = {{0.9, 0.9, 0.9}, "colour", nil, nil, "外观", 2, "更改施法条颜色", nil, nil},
+    setFillDirection = {"left", "dropdown", {"left", "right", "center"}, nil, "施法条基础", 3, "设置填充方向", nil, nil},
+    showShadow = {true, "checkbox", nil, nil, "施法条基础", 4, "在施法条下方显示阴影", nil, nil},
+    barWidth = {200, "slider", {120, 350}, nil, "施法条基础", 5, "更改施法条宽度", nil, nil},
+    barHeight = {16, "slider", {10, 30}, nil, "施法条基础", 6, "更改施法条高度", nil, nil},
     castFont = {"FRIZQT__.TTF", "dropdown", {
         "FRIZQT__.TTF",
         "Expressway",
@@ -19,15 +19,15 @@ DFRL:NewDefaults("Cast", {
         "BigNoodleTitling",
         "Continuum",
         "DieDieDie"
-    }, nil, "text settings", 7, "Change the font used for the castbar", nil, nil},
-    showTime = {true, "checkbox", nil, nil, "text settings", 8, "Show casting time", nil, nil},
-    showSpell = {true, "checkbox", nil, nil, "text settings", 9, "Show spell name text", nil, nil},
-    showIcon = {true, "checkbox", nil, nil, "text settings", 10, "Show casting spell icon", "Requires ShaguTweaks", nil},
-    fontSize = {12, "slider", {5, 25}, nil, "text settings", 11, "Change castbar font size", nil, nil},
-    textAlign = {"LEFT", "dropdown", {"LEFT", "CENTER", "RIGHT"}, nil, "text settings", 12, "Change spell text alignment", nil, nil},
-    spellX = {5, "slider", {-100, 300}, nil, "text settings", 13, "Change spell name X offset", nil, nil},
-    timeX = {-5, "slider", {-300, 100}, nil, "text settings", 14, "Change casting time X offset", nil, nil},
-    fontY = {-16, "slider", {-40, 40}, nil, "text settings", 15, "Change castbar font Y offset", nil, nil},
+    }, nil, "文本设置", 7, "更改施法条使用的字体", nil, nil},
+    showTime = {true, "checkbox", nil, nil, "文本设置", 8, "显示施法时间", nil, nil},
+    showSpell = {true, "checkbox", nil, nil, "文本设置", 9, "显示法术名称文本", nil, nil},
+    showIcon = {true, "checkbox", nil, nil, "文本设置", 10, "显示施法法术图标", "需要 ShaguTweaks", nil},
+    fontSize = {12, "slider", {5, 25}, nil, "文本设置", 11, "更改施法条字体大小", nil, nil},
+    textAlign = {"LEFT", "dropdown", {"LEFT", "CENTER", "RIGHT"}, nil, "文本设置", 12, "更改法术文本对齐方式", nil, nil},
+    spellX = {5, "slider", {-100, 300}, nil, "文本设置", 13, "更改法术名称X偏移", nil, nil},
+    timeX = {-5, "slider", {-300, 100}, nil, "文本设置", 14, "更改施法时间X偏移", nil, nil},
+    fontY = {-16, "slider", {-40, 40}, nil, "文本设置", 15, "更改施法条字体Y偏移", nil, nil},
 })
 
 DFRL:NewMod("Cast", 1, function()

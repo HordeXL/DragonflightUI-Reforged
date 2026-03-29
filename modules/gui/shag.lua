@@ -150,7 +150,7 @@ DFRL:NewMod("Gui-shag", 3, function()
                 local txt = panel:CreateFontString(nil, "OVERLAY")
                 txt:SetFont(self.font .. "BigNoodleTitling.ttf", 30, "OUTLINE")
                 txt:SetPoint("TOP", panel, "TOP", 10, -yPos-50)
-                txt:SetText("SHAGU TWEAKS EXTRAS MISSING\nINSTALL FOR MORE OPTIONS")
+                txt:SetText("缺少 SHAGU TWEAKS EXTRAS\n安装以获取更多选项")
                 txt:SetTextColor(1, 0.5, 0.5)
                 local f3 = CreateFrame("Frame")
                 f3.t = 0

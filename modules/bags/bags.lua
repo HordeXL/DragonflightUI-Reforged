@@ -1,14 +1,14 @@
 DFRL:NewDefaults("Bags", {
     enabled = {true},
-    bagDarkMode = {0, "slider", {0, 1}, "showBags", "appearance", 1, "Adjust dark mode intensity", nil, nil},
-    bagColor = {{1, 1, 1}, "colour", nil, nil, "appearance", 3, "Change bag color", nil, nil},
-    showBags = {true, "checkbox", nil, nil, "appearance", 4, "Show or hide the bag frame", nil, nil},
-    hoverShow = {false, "checkbox", nil, "showBags", "bag basic", 5, "Show or hide bags on mouse hover", nil, nil},
-    toggleBags = {true, "checkbox", nil, "showBags", "bag basic", 6, "Show or hide the small bag slots", nil, nil},
-    showToggle = {true, "checkbox", nil, "showBags", "bag basic", 7, "Show or hide the bag toggle button", nil, nil},
-    bagScale = {1.5, "slider", {0.5, 2.5}, "showBags", "bag basic", 8, "Adjusts the scale of the main backpack", nil, nil},
-    bagAlpha = {1, "slider", {0.1, 1}, "showBags", "bag basic", 9, "Adjusts the transparency of all bags", nil, nil},
-    freeSlots = {true, "checkbox", nil, "showBags", "tweaks", 10, "Show or hide free bag slots", nil, nil},
+    bagDarkMode = {0, "slider", {0, 1}, "showBags", "外观", 1, "调整暗色模式强度", nil, nil},
+    bagColor = {{1, 1, 1}, "colour", nil, nil, "外观", 3, "更改背包颜色", nil, nil},
+    showBags = {true, "checkbox", nil, nil, "外观", 4, "显示或隐藏背包框体", nil, nil},
+    hoverShow = {false, "checkbox", nil, "showBags", "背包基础", 5, "鼠标悬停时显示或隐藏背包", nil, nil},
+    toggleBags = {true, "checkbox", nil, "showBags", "背包基础", 6, "显示或隐藏小背包槽位", nil, nil},
+    showToggle = {true, "checkbox", nil, "showBags", "背包基础", 7, "显示或隐藏背包切换按钮", nil, nil},
+    bagScale = {1.5, "slider", {0.5, 2.5}, "showBags", "背包基础", 8, "调整主背包的缩放", nil, nil},
+    bagAlpha = {1, "slider", {0.1, 1}, "showBags", "背包基础", 9, "调整所有背包的透明度", nil, nil},
+    freeSlots = {true, "checkbox", nil, "showBags", "调整", 10, "显示或隐藏空闲背包槽位", nil, nil},
 })
 
 DFRL:NewMod("Bags", 1, function()

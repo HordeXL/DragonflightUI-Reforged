@@ -16,8 +16,8 @@ local Setup = {
         timerDuration = 10,
         barWidth = 200,
         barHeight = 3,
-        title = "|cFFFF0000Important Patch Warning|r",
-        text = "Patch 2.0.11 implemented the pvp icon natively.\n\nDo not place the 'TargetingFrame' folder into\nyour WoW/Interface/ dir anymore.\nDeactivate module for Blizzard default.",
+        title = "|cFFFF0000重要补丁警告|r",
+        text = "补丁 2.0.11 已原生实现了 PVP 图标。\n\n请勿再将 'TargetingFrame' 文件夹放入\n您的 WoW/Interface/ 目录中。\n请停用暴雪默认模块。",
         additionalText = "",
         version = "2.0.11",
     },
@@ -65,29 +65,61 @@ function Setup:WelcomePage()
     T.GradientLine(self.welcomeFrame, "TOP", -290, nil, 200)
     T.GradientLine(self.welcomeFrame, "BOTTOM", -1, 3)
 
-    local title = DFRL.tools.CreateFont(self.welcomeFrame, 18, "|cFFFFFFFFWelcome to|r |cFFFFD700Dragonflight|r: |cFFFFFFFFReforged|r |cFFFFD7002.0")
+    local title = self.welcomeFrame:CreateFontString(nil, "OVERLAY")
+    title:SetFont("Fonts\\FRIZQT__.TTF", 18, "OUTLINE")
+    title:SetText("|cFFFFFFFF欢迎使用|r |cFFFFD700Dragonflight|r: |cFFFFFFFFReforged|r |cFFFFD7002.0")
     title:SetPoint("TOP", 0, -25)
 
-    local text = DFRL.tools.CreateFont(self.welcomeFrame, 15, "Tip:\nHold CTRL + SHIFT + ALT to move frames.\n\n\nBefore reporting bugs:\n|cffff6060Please disable all other addons|n except for Dragonflight: Reforged.|r\n\n90% of bug reports lead to conflicts with other addons.\nThank you for helping us keep bug reports accurate.\n\nEnjoy |cFFFFD700Dragonflight|r and dont forget to update. ")
+    local text = self.welcomeFrame:CreateFontString(nil, "OVERLAY")
+    text:SetFont("Fonts\\FRIZQT__.TTF", 15, "OUTLINE")
+    text:SetText("提示：\n按住 CTRL + SHIFT + ALT 来移动框架。\n\n\n在报告错误之前：\n|cffff6060请禁用除 Dragonflight: Reforged 之外|n的所有其他插件。|r\n\n90% 的错误报告都是由与其他插件的冲突引起的。\n感谢您帮助我们保持错误报告的准确性。\n\n享受 |cFFFFD700Dragonflight|r 的乐趣，别忘了更新。 ")
     text:SetPoint("TOP", title, "BOTTOM", 0, -40)
     text:SetWidth(380)
 
-    local okBtn = DFRL.tools.CreateButton(self.welcomeFrame, "Okay", 65, 27)
+    local okBtn = CreateFrame("Button", nil, self.welcomeFrame)
+    okBtn:SetWidth(65)
+    okBtn:SetHeight(27)
     okBtn:SetPoint("BOTTOM", 0, 60)
     okBtn:Disable()
+    local okBtnTxt = okBtn:CreateFontString(nil, "OVERLAY")
+    okBtnTxt:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
+    okBtnTxt:SetPoint("CENTER", okBtn, "CENTER", 0, 0)
+    okBtnTxt:SetText("确定")
+    okBtn:SetFontString(okBtnTxt)
 
-    local menuBtn = DFRL.tools.CreateButton(self.welcomeFrame, "Menu", 65, 27)
+    local menuBtn = CreateFrame("Button", nil, self.welcomeFrame)
+    menuBtn:SetWidth(65)
+    menuBtn:SetHeight(27)
     menuBtn:SetPoint("TOP", okBtn, "BOTTOM", 0, -10)
     menuBtn:Disable()
+    local menuBtnTxt = menuBtn:CreateFontString(nil, "OVERLAY")
+    menuBtnTxt:SetFont("Fonts\\FRIZQT__.TTF", 12, "OUTLINE")
+    menuBtnTxt:SetPoint("CENTER", menuBtn, "CENTER", 0, 0)
+    menuBtnTxt:SetText("菜单")
+    menuBtn:SetFontString(menuBtnTxt)
 
-    local lightBtn = DFRL.tools.CreateButton(self.welcomeFrame, "Light Mode", 50, 24, true)
+    local lightBtn = CreateFrame("Button", nil, self.welcomeFrame)
+    lightBtn:SetWidth(50)
+    lightBtn:SetHeight(24)
     lightBtn:SetPoint("RIGHT", okBtn, "LEFT", -15, -13)
+    local lightBtnTxt = lightBtn:CreateFontString(nil, "OVERLAY")
+    lightBtnTxt:SetFont("Fonts\\FRIZQT__.TTF", 10, "OUTLINE")
+    lightBtnTxt:SetPoint("CENTER", lightBtn, "CENTER", 0, 0)
+    lightBtnTxt:SetText("浅色模式")
+    lightBtn:SetFontString(lightBtnTxt)
     lightBtn:SetScript("OnClick", function()
         Setup:TempDBForSwitching(false)
     end)
 
-    local darkBtn = DFRL.tools.CreateButton(self.welcomeFrame, "Dark Mode", 50, 24, true)
+    local darkBtn = CreateFrame("Button", nil, self.welcomeFrame)
+    darkBtn:SetWidth(50)
+    darkBtn:SetHeight(24)
     darkBtn:SetPoint("LEFT", okBtn, "RIGHT", 15, -13)
+    local darkBtnTxt = darkBtn:CreateFontString(nil, "OVERLAY")
+    darkBtnTxt:SetFont("Fonts\\FRIZQT__.TTF", 10, "OUTLINE")
+    darkBtnTxt:SetPoint("CENTER", darkBtn, "CENTER", 0, 0)
+    darkBtnTxt:SetText("深色模式")
+    darkBtn:SetFontString(darkBtnTxt)
     darkBtn:SetScript("OnClick", function()
         Setup:TempDBForSwitching(true)
     end)
@@ -157,7 +189,9 @@ function Setup:PatchWarning()
     T.GradientLine(patchFrame, "TOP", -0)
     T.GradientLine(patchFrame, "BOTTOM", 0)
 
-    local title = DFRL.tools.CreateFont(patchFrame, 18, self.patchConfig.title)
+    local title = patchFrame:CreateFontString(nil, "OVERLAY")
+    title:SetFont("Fonts\\FRIZQT__.TTF", 18, "OUTLINE")
+    title:SetText(self.patchConfig.title)
     title:SetPoint("TOP", 0, -20)
 
     local fullText = self.patchConfig.text
@@ -165,11 +199,13 @@ function Setup:PatchWarning()
         fullText = fullText .. "\n\n|cFFFF0000" .. self.patchConfig.additionalText .. "|r"
     end
 
-    local text = DFRL.tools.CreateFont(patchFrame, 15, fullText)
+    local text = patchFrame:CreateFontString(nil, "OVERLAY")
+    text:SetFont("Fonts\\FRIZQT__.TTF", 15, "OUTLINE")
+    text:SetText(fullText)
     text:SetPoint("TOP", title, "BOTTOM", 0, -16)
     text:SetWidth(380)
 
-    local okBtn = DFRL.tools.CreateButton(patchFrame, "Okay", 120, 24)
+    local okBtn = DFRL.tools.CreateButton(patchFrame, "确定", 120, 24)
     okBtn:SetPoint("BOTTOM", 0, 20)
     okBtn:Disable()
 

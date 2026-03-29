@@ -70,22 +70,22 @@ DFRL:NewMod("Gui-base", 2, function()
         panelFading = false,
 
         tabs = {
-            [1] = "Home",
-            [2] = "Info",
-            [3] = "Profiles",
-            [4] = "Modules",
+            [1] = "主页",
+            [2] = "信息",
+            [3] = "配置文件",
+            [4] = "模块",
             [5] = "ShaguTweaks",
 
-            [6] = "Actionbars",
-            [7] = "Bags",
-            [8] = "Castbar",
-            [9] = "Chat",
-            [10] = "Interface",
-            [11] = "Micromenu",
-            [12] = "Minimap",
-            [13] = "Third Party",
-            [14] = "Unitframes",
-            [15] = "Xprep",
+            [6] = "动作条",
+            [7] = "背包",
+            [8] = "施法条",
+            [9] = "聊天",
+            [10] = "界面",
+            [11] = "微型菜单",
+            [12] = "小地图",
+            [13] = "第三方",
+            [14] = "单位框体",
+            [15] = "经验条",
         }
     }
 
@@ -219,16 +219,17 @@ DFRL:NewMod("Gui-base", 2, function()
             tex:SetVertexColor(0, 0, 0, self.CONSTANTS.BACKGROUND_ALPHA)
 
             self.profileText = self.subFrame:CreateFontString(nil, "OVERLAY")
-            self.profileText:SetFont(self.font.. "BigNoodleTitling.ttf", 14, "OUTLINE")
+            self.profileText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
             self.profileText:SetTextColor(1, .82, 0, 1)
             self.profileText:SetPoint("LEFT", self.subFrame, "LEFT", 10, 0)
 
             local charName = UnitName("player")
             local profileName = DFRL_CUR_PROFILE[charName] or "Default"
-            self.profileText:SetText("Profile:   |cffffffff" .. profileName .. "|r")
+            local displayProfileName = profileName == "Default" and "默认" or profileName
+            self.profileText:SetText("配置文件:   |cffffffff" .. displayProfileName .. "|r")
 
             self.fpsText = self.subFrame:CreateFontString(nil, "OVERLAY")
-            self.fpsText:SetFont(self.font.. "BigNoodleTitling.ttf", 14, "OUTLINE")
+            self.fpsText:SetFont("Fonts\\FRIZQT__.TTF", 14, "OUTLINE")
             self.fpsText:SetTextColor(1, .82, 0, 1)
             self.fpsText:SetPoint("RIGHT", self.subFrame, "RIGHT", -10, 0)
 
@@ -236,8 +237,10 @@ DFRL:NewMod("Gui-base", 2, function()
                 if (this.fpsTimer or 0) > GetTime() then return end
                 this.fpsTimer = GetTime() + 0.5
                 DFRL.activeScripts["GUI SubFrame"] = true
-                self.fpsText:SetText("FPS: |cffffffff" .. format("%.1f", GetFramerate()) .. "|r")
-                self.profileText:SetText("Profile:   |cffffffff" .. (DFRL_CUR_PROFILE[UnitName("player")] or "Default") .. "|r")
+                self.fpsText:SetText("帧数: |cffffffff" .. format("%.1f", GetFramerate()) .. "|r")
+                local currentProfile = DFRL_CUR_PROFILE[UnitName("player")] or "Default"
+                local displayCurrentProfile = currentProfile == "Default" and "默认" or currentProfile
+                self.profileText:SetText("配置文件:   |cffffffff" .. displayCurrentProfile .. "|r")
             end)
 
             self.subFrame:SetScript("OnShow", function()
@@ -360,10 +363,10 @@ DFRL:NewMod("Gui-base", 2, function()
                 self.reloadFrame:SetWidth(200)
                 self.reloadFrame:SetHeight(80)
 
-                self.reloadFont = DFRL.tools.CreateFont(self.reloadFrame, 14, "Changes take effect after reload:", {0.5, 0.5, 0.5}, "CENTER")
+                self.reloadFont = DFRL.tools.CreateFont(self.reloadFrame, 14, "更改将在重载界面后生效:", {0.5, 0.5, 0.5}, "CENTER")
                 self.reloadFont:SetPoint("TOP", self.reloadFrame, "TOP", 0, 0)
 
-                self.reloadBtn = DFRL.tools.CreateButton(self.reloadFrame, "Reload UI", 140, 30, true, {1, 0.5, 0.5})
+                self.reloadBtn = DFRL.tools.CreateButton(self.reloadFrame, "重载界面", 140, 30, true, {1, 0.5, 0.5})
                 self.reloadBtn:SetScript("OnClick", function()
                     ReloadUI()
                 end)

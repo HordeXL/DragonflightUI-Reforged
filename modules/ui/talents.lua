@@ -88,7 +88,7 @@ DFRL:NewMod("Talents", 1, function()
         end)
 
         local headerText = frame:CreateFontString(nil, 'OVERLAY', 'GameFontNormalLarge')
-        headerText:SetText('Talents')
+        headerText:SetText('天赋')
         headerText:SetPoint('TOP', frame, 'TOP', 0, 23)
 
         local pointsLeft = frame:CreateFontString(nil, 'OVERLAY', 'GameFontNormal')

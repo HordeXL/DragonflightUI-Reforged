@@ -89,28 +89,28 @@ DFRL:NewMod("Addons", 1, function()
         tinsert(UISpecialFrames, self.frame:GetName())
         self.frame:Hide()
 
-        local title = DFRL.tools.CreateFont(self.frame, 16, "Addon Manager", {1, 1, 1})
+        local title = DFRL.tools.CreateFont(self.frame, 16, "插件管理", {1, 1, 1})
         title:SetPoint("TOP", self.frame, "TOP", 0, -10)
 
-        local closeBtn = DFRL.tools.CreateButton(self.frame, "close", 40, 20, 1)
+        local closeBtn = DFRL.tools.CreateButton(self.frame, "关闭", 40, 20, 1)
         closeBtn:SetPoint("TOPRIGHT", self.frame, "TOPRIGHT", -5, -5)
         closeBtn:SetScript("OnClick", function() self.frame:Hide() end)
 
-        self.reloadBtn = DFRL.tools.CreateButton(self.frame, "Reload UI", 100, self.BUTTON_HEIGHT, nil, {1,0,0})
+        self.reloadBtn = DFRL.tools.CreateButton(self.frame, "重载界面", 100, self.BUTTON_HEIGHT, nil, {1,0,0})
         self.reloadBtn:SetPoint("BOTTOM", self.frame, "BOTTOM", 0, 10)
         self.reloadBtn:SetScript("OnClick", function() ReloadUI() end)
         self.reloadBtn:Disable()
 
-        local addonHeader = DFRL.tools.CreateCategoryHeader(self.frame, "addon", false, self.ADDON_COL_WIDTH, self.HEADER_HEIGHT, 12)
+        local addonHeader = DFRL.tools.CreateCategoryHeader(self.frame, "插件", false, self.ADDON_COL_WIDTH, self.HEADER_HEIGHT, 14)
         addonHeader:SetPoint("TOPLEFT", self.frame, "TOPLEFT", self.FRAME_BORDER, -self.HEADER_TOP_OFFSET)
 
-        local authorHeader = DFRL.tools.CreateCategoryHeader(self.frame, "author", false, self.AUTHOR_COL_WIDTH, self.HEADER_HEIGHT, 12)
+        local authorHeader = DFRL.tools.CreateCategoryHeader(self.frame, "作者", false, self.AUTHOR_COL_WIDTH, self.HEADER_HEIGHT, 14)
         authorHeader:SetPoint("LEFT", addonHeader, "RIGHT", self.COLUMN_SPACING, 0)
 
-        local versionHeader = DFRL.tools.CreateCategoryHeader(self.frame, "version", false, self.VERSION_COL_WIDTH, self.HEADER_HEIGHT, 12)
+        local versionHeader = DFRL.tools.CreateCategoryHeader(self.frame, "版本", false, self.VERSION_COL_WIDTH, self.HEADER_HEIGHT, 14)
         versionHeader:SetPoint("LEFT", authorHeader, "RIGHT", self.COLUMN_SPACING, 0)
 
-        local loadTimeHeader = DFRL.tools.CreateCategoryHeader(self.frame, "load time", false, self.LOADTIME_COL_WIDTH, self.HEADER_HEIGHT, 12)
+        local loadTimeHeader = DFRL.tools.CreateCategoryHeader(self.frame, "加载时间", false, self.LOADTIME_COL_WIDTH, self.HEADER_HEIGHT, 14)
         loadTimeHeader:SetPoint("LEFT", versionHeader, "RIGHT", self.COLUMN_SPACING, 0)
 
         self.scroll = CreateFrame("ScrollFrame", nil, self.frame)
@@ -177,15 +177,15 @@ DFRL:NewMod("Addons", 1, function()
                     Setup.reloadBtn:Enable()
                 end)
 
-                local authorText = DFRL.tools.CreateFont(row, 12, self:AbbreviateAuthor(author), {0.6, 0.6, 0.6})
+                local authorText = DFRL.tools.CreateFont(row, 14, self:AbbreviateAuthor(author), {0.6, 0.6, 0.6})
                 authorText:SetPoint("LEFT", row, "LEFT", self.CHECKBOX_OFFSET + self.ADDON_COL_WIDTH + self.COLUMN_SPACING, 0)
 
                 local displayVersion = version or "N/A"
-                local versionText = DFRL.tools.CreateFont(row, 12, displayVersion, self:GetVersionColor(displayVersion))
+                local versionText = DFRL.tools.CreateFont(row, 14, displayVersion, self:GetVersionColor(displayVersion))
                 versionText:SetPoint("LEFT", row, "LEFT", self.CHECKBOX_OFFSET + self.ADDON_COL_WIDTH + self.AUTHOR_COL_WIDTH + (self.COLUMN_SPACING * 2), 0)
 
                 local loadTime = self:GetLoadTime(name)
-                local loadTimeText = DFRL.tools.CreateFont(row, 12, loadTime, {0.9, 0.7, 0.3})
+                local loadTimeText = DFRL.tools.CreateFont(row, 14, loadTime, {0.9, 0.7, 0.3})
                 loadTimeText:SetPoint("LEFT", row, "LEFT", self.CHECKBOX_OFFSET + self.ADDON_COL_WIDTH + self.AUTHOR_COL_WIDTH + self.VERSION_COL_WIDTH + (self.COLUMN_SPACING * 3), 0)
 
                 self.list[i] = {row = row, checkbox = checkbox, version = versionText, author = authorText, loadTime = loadTimeText}
