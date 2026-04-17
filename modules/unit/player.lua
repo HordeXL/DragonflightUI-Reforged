@@ -2,7 +2,7 @@ DFRL:NewDefaults("Player", {
     enabled = {true},
     playerDarkMode = {0, "slider", {0, 1}, nil, "外观", 1, "调整暗色模式强度", nil, nil},
     playerColor = {{1, 1, 1}, "colour", nil, nil, "外观", 2, "更改玩家颜色", nil, nil},
-    eliteBorder = {"standard", "dropdown", {"standard", "rare", "elite", "rare-elite", "boss", "dfrl evolved", "dfrl nebula"}, nil, "外观", 3, "更改玩家框体纹理", nil, nil},
+    eliteBorder = {"standard", "dropdown", {"standard", "rare", "elite", "rare-elite", "boss", "dfrl evolved", "dfrl nebula", "dfrl gold", "dfrl silver", "dfrl bronze"}, nil, "外观", 3, "更改玩家框体纹理", nil, nil},
     frameScale = {1, "slider", {0.7, 1.3}, nil, "外观", 4, "调整框体大小", nil, nil},
     classPortrait = {false, "checkbox", nil, nil, "外观", 5, "激活2D职业头像图标", nil, nil},
     frameHide = {false, "checkbox", nil, nil, "外观", 6, "非战斗满血时隐藏框体", nil, nil},
@@ -211,7 +211,7 @@ end
     function Setup:NameText()
         local cfg = self.texts.config
         PlayerFrame.name:ClearAllPoints()
-        PlayerFrame.name:SetPoint("LEFT", PlayerFrame, "LEFT", 80, 25)
+        PlayerFrame.name:SetPoint("LEFT", PlayerFrame, "LEFT", 85, 25)
         PlayerFrame.name:SetFont(cfg.font, cfg.nameFontSize, cfg.outline)
         PlayerFrame.name:SetTextColor(unpack(cfg.nameColor))
     end
@@ -924,10 +924,12 @@ end
             tex = Setup.texpath .. "UI-TargetingFrame-RareElite.blp"
         elseif value == "boss" then
             tex = Setup.texpath .. "UI-TargetingFrame-Boss.blp"
-        elseif value == "dfrl nebula" then
+        elseif value == "dfrl bronze" then
             tex = Setup.texpath .. "guzruul_nebula_v1.tga"
-        elseif value == "dfrl evolved" then
+        elseif value == "dfrl gold" then
             tex = Setup.texpath .. "guzruul_evolved_v1.tga"
+        elseif value == "dfrl silver" then
+            tex = Setup.texpath .. "guzruul_evolved_v2.tga"
         else
             tex = Setup.texpath .. "UI-TargetingFrameDF.blp"
         end
