@@ -315,7 +315,7 @@ DFRL:SetScript("OnEvent", function()
         if boot then return end
         DFRL:InitTempDB()
         DFRL:RunMods()
-        print("欢迎使用 |cffffd200Dragonflight:|r Reforged. |cffffd200By等待依然--20260223修复汉化|r")
+        print("欢迎使用 |cffffd200Dragonflight:|r Reforged. |cffffd200By等待依然--20260502汉化|r")
         print("通过 |cffddddddESC|r 键或 |cffdddddd/dfrl|r 命令打开菜单。")
     end
     if event == "PLAYER_LOGOUT" then
