@@ -127,6 +127,10 @@ DFRL:NewMod("Bars", 1, function()
             PetActionBarFrame:EnableMouse(false)
 
             KillFrame(_G.ExhaustionTick)
+            KillFrame(_G.ReputationWatchBar)
+            KillFrame(_G.ArtifactWatchBar)
+            KillFrame(_G.HonorWatchBar)
+            KillFrame(_G.MainMenuBarMaxLevelBar)
 
             SlidingActionBarTexture0:SetTexture(nil)
             SlidingActionBarTexture1:SetTexture(nil)
